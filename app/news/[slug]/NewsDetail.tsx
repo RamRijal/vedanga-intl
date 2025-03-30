@@ -69,6 +69,7 @@ export function NewsDetail({ article }: { article: typeof news[0] }) {
                     {/* Hero Image Section */}
                     <div className="relative h-[50vh] max-h-[600px]">
                         <Image
+                            loading="lazy"
                             src={article.image}
                             alt={article.title}
                             fill

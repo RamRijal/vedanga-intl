@@ -14,7 +14,7 @@ const Hero = () => {
         const timer = setInterval(() => {
             setDirection(1);
             setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
-        }, 7000);
+        }, 3000);
         return () => clearInterval(timer);
     }, []);
 
@@ -29,26 +29,26 @@ const Hero = () => {
     };
 
     const slideVariants = {
-        hidden: (direction: number) => ({
+        initial: (direction: number) => ({
             x: direction > 0 ? "100%" : "-100%",
-            opacity: 0
+            opacity: 1,
         }),
-        visible: {
+        enter: {
             x: 0,
             opacity: 1,
             transition: {
                 duration: 1,
-                ease: "easeInOut"
-            }
+                ease: "easeInOut",
+            },
         },
         exit: (direction: number) => ({
             x: direction > 0 ? "-100%" : "100%",
             opacity: 0,
             transition: {
                 duration: 1,
-                ease: "easeInOut"
-            }
-        })
+                ease: "easeInOut",
+            },
+        }),
     };
 
     const textVariants = {
@@ -59,9 +59,9 @@ const Hero = () => {
             transition: {
                 delay: 0.5,
                 duration: 0.8,
-                ease: "easeOut"
-            }
-        }
+                ease: "easeOut",
+            },
+        },
     };
 
     const buttonVariants = {
@@ -72,9 +72,9 @@ const Hero = () => {
             transition: {
                 delay: 0.8,
                 duration: 0.5,
-                ease: "backOut"
-            }
-        }
+                ease: "backOut",
+            },
+        },
     };
 
     return (
@@ -82,28 +82,25 @@ const Hero = () => {
             {/* Background Layers */}
             <div className="absolute inset-0 z-0">
                 {/* Main image with gradient overlay */}
-                <AnimatePresence custom={direction} mode="wait">
+                <AnimatePresence custom={direction} mode="sync">
                     <motion.div
                         key={currentSlide}
                         custom={direction}
                         variants={slideVariants}
-                        initial="hidden"
-                        animate="visible"
+                        initial="initial"
+                        animate="enter"
                         exit="exit"
                         className="absolute inset-0 w-full h-full"
                         style={{
                             backgroundImage: `url(${heroSlides[currentSlide].image})`,
                             backgroundSize: "cover",
-                            backgroundPosition: "center"
+                            backgroundPosition: "center",
                         }}
                     />
                 </AnimatePresence>
 
                 {/* New gradient overlay - dark left to light right */}
-                <div className="absolute inset-0 bg-gradient-to-r from-black/50 via-black/10 to-transparent" />
-
-                {/* Brand color overlay */}
-                <div className="absolute inset-0 bg-gradient-to-r from-[#D41D33]/50 to-[#FF981F]/10 " />
+                <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/30 to-transparent" />
 
                 {/* Subtle pattern */}
                 <div className="absolute inset-0 opacity-50 bg-[url('/images/dot-pattern.svg')]" />
@@ -119,6 +116,9 @@ const Hero = () => {
                         className="max-w-2xl text-white"
                     >
 
+                        <motion.p className="text-xl md:text-lg mb-3 text-white/90 leading-relaxed">
+                            We provide
+                        </motion.p>
                         <motion.h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6">
                             {heroSlides[currentSlide].title}
                         </motion.h1>
@@ -163,13 +163,11 @@ const Hero = () => {
                             setDirection(index > currentSlide ? 1 : -1);
                             setCurrentSlide(index);
                         }}
-                        className={`w-3 h-3 rounded-full transition-all ${index === currentSlide ? "bg-white w-6" : "bg-white/50"}`}
+                        className={`w-3 h-3 rounded-full transition-all ${index === currentSlide ? "bg-[#D41D33] w-6" : "bg-white/50"}`}
                         aria-label={`Go to slide ${index + 1}`}
                     />
                 ))}
             </div>
-
-
         </section>
     );
 };

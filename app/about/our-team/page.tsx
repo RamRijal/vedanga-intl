@@ -86,7 +86,7 @@ export default function OurTeam() {
             Faculty & Staff
           </span>
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            Meet Our <span className="text-[#D41D33]">Professionals</span> 
+            Meet Our <span className="text-[#D41D33]">Professionals</span>
           </h1>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto">
             Our dedicated educators bring passion, expertise, and innovation to create an inspiring learning environment
@@ -106,6 +106,7 @@ export default function OurTeam() {
             >
               <div className="relative h-72 overflow-hidden">
                 <Image
+                  loading="lazy"
                   src={member.image}
                   alt={member.name}
                   fill
@@ -197,7 +198,7 @@ export default function OurTeam() {
           </div>
         </motion.div>
 
-     
+
       </div>
     </div>
   );

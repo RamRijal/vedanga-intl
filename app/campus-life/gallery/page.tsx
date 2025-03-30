@@ -154,6 +154,7 @@ export default function Gallery() {
             >
               <div className="relative aspect-[4/3] overflow-hidden">
                 <Image
+                  loading="lazy"
                   src={image.src}
                   alt={image.title}
                   fill
@@ -259,6 +260,7 @@ export default function Gallery() {
               >
                 <div className={`overflow-auto ${isZoomed ? 'cursor-zoom-out' : 'cursor-zoom-in'}`}>
                   <Image
+                    loading="lazy"
                     src={selectedImageData?.src || ''}
                     alt={selectedImageData?.title || 'Selected image'}
                     width={1200}

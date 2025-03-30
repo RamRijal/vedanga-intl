@@ -23,7 +23,7 @@ export default function PrincipalMessage() {
             MESSAGE
           </span>
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            From the <span className="text-[#D41D33]">Principal's</span> Desk
+            From the <span className="text-[#D41D33]">Principal&apos;s</span> Desk
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             Guiding Vedanga International School towards educational excellence
@@ -41,7 +41,8 @@ export default function PrincipalMessage() {
             <div className="bg-white rounded-2xl shadow-xl overflow-hidden sticky top-24 border border-gray-100">
               <div className="relative h-80 w-full">
                 <Image
-                  src="https://images.unsplash.com/photo-1573496799652-408c2ac9fe98?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+                  loading="lazy"
+                  src="/images/ppp.png"
                   alt="Principal"
                   fill
                   className="object-cover"
@@ -49,7 +50,7 @@ export default function PrincipalMessage() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                  <h2 className="text-2xl font-bold">Dr. Sarah Johnson</h2>
+                  <h2 className="text-2xl font-bold">Dr. Bhawesh Sapkota</h2>
                   <p className="text-white/90">Principal</p>
                 </div>
               </div>
@@ -61,7 +62,7 @@ export default function PrincipalMessage() {
                   </div>
                   <div>
                     <h3 className="text-sm font-medium text-gray-500">Qualifications</h3>
-                    <p className="text-gray-700">Ph.D. in Education Leadership</p>
+                    <p className="text-gray-700">Ph.D. in Education </p>
                   </div>
                 </div>
 
@@ -81,7 +82,7 @@ export default function PrincipalMessage() {
                   </div>
                   <div>
                     <h3 className="text-sm font-medium text-gray-500">Email</h3>
-                    <p className="text-gray-700">principal@vedanga.edu.np</p>
+                    <p className="text-gray-700">sapkotabhaweshvedanga@gmail.com</p>
                   </div>
                 </div>
 
@@ -91,7 +92,7 @@ export default function PrincipalMessage() {
                   </div>
                   <div>
                     <h3 className="text-sm font-medium text-gray-500">Phone</h3>
-                    <p className="text-gray-700">+977 015372578</p>
+                    <p className="text-gray-700">+977 98</p>
                   </div>
                 </div>
               </div>
@@ -118,7 +119,7 @@ export default function PrincipalMessage() {
                 <div className="relative my-12 p-8 bg-[#D41D33]/5 rounded-xl border-l-4 border-[#D41D33]">
                   <Quote className="absolute top-3 left-4 h-8 w-8 text-[#D41D33]/30" />
                   <p className="text-xl italic text-gray-700 font-medium mt-2">
-                    "Education is not just about acquiring knowledge, but about shaping character and building futures."
+                    &quot;Education is not just about acquiring knowledge, but about shaping character and building futures.&quot;
                   </p>
                 </div>
 

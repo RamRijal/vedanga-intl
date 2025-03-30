@@ -83,6 +83,7 @@ export default function Events() {
                 <div className="relative h-64">
                   <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-black/5 to-transparent group-hover:from-black/20 transition-colors z-10" />
                   <Image
+                    loading="lazy"
                     src={event.image}
                     alt={event.title}
                     fill

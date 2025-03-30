@@ -77,6 +77,7 @@ export default function News() {
                   {/* Image with dark overlay */}
                   <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors z-10" />
                   <Image
+                    loading="lazy"
                     src={item.image}
                     alt={item.title}
                     fill

@@ -118,18 +118,19 @@ export function MainNav() {
   const [open, setOpen] = React.useState(false);
 
   return (
-    <div className="flex items-center justify-between w-full">
+    <div className="flex items-center justify-between w-full p-4">
       <Link href="/" className="flex items-center space-x-2">
-        <Image
-          src="/images/logo1222.jpg"
-          alt="Vedanga Logo"
-          width={60}
-          height={60}
-          className="h-20 w-auto"
-        />
-        <div>
-          <span className="text-xl font-bold text-[#D41D33]">Vedanga</span>
-          <span className="hidden md:inline lg:hidden xl:inline text-xl font-bold text-gray-700"> International School</span>
+        <div className="flex flex-col items-center">
+          <Image
+            src="/images/logo.png"
+            alt="Vedanga Logo"
+            width={40}
+            height={40}
+            className="h-12 w-fit lg:h-16 lg:w-fit object-cover"
+          />
+          {/* <span className="hidden text-[10px] font-bold text-[#D41D33] xl:inline lg:ml-2">
+            Vedanga International School
+          </span> */}
         </div>
       </Link>
 
@@ -139,7 +140,7 @@ export function MainNav() {
           <NavigationMenuItem>
             <NavigationMenuTrigger className="bg-transparent hover:bg-gray-50">About</NavigationMenuTrigger>
             <NavigationMenuContent>
-              <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2">
+              <ul className="grid w-[420px] gap-3 p-4 md:w-[500px] md:grid-cols-2">
                 {aboutItems.map((item) => (
                   <ListItem
                     key={item.href}
