@@ -18,7 +18,7 @@ const Principal = () => {
                     >
                         <div className="relative h-[500px] w-full overflow-hidden rounded-xl shadow-2xl">
                             <Image
-                                src="/images/foto13.jpg"
+                                src="/images/ppp.jpg"
                                 alt="Principal"
                                 fill
                                 className="z-20 object-cover shadow-md"

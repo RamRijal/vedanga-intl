@@ -141,14 +141,14 @@ const Hero = () => {
             {/* Navigation Arrows */}
             <button
                 onClick={prevSlide}
-                className="absolute left-4 sm:left-8 top-1/2 -translate-y-1/2 z-10 p-3 bg-white/20 rounded-full text-white hover:bg-white/30 transition-all backdrop-blur-sm"
+                className="absolute left-4 sm:left-8 top-1/2 -translate-y-1/2 z-10 p-3 bg-black/10 rounded-full text-white hover:bg-black/30 transition-all backdrop-blur-sm"
                 aria-label="Previous slide"
             >
                 <ChevronLeft className="h-6 w-6 sm:h-8 sm:w-8" />
             </button>
             <button
                 onClick={nextSlide}
-                className="absolute right-4 sm:right-8 top-1/2 -translate-y-1/2 z-10 p-3 bg-white/20 rounded-full text-white hover:bg-white/30 transition-all backdrop-blur-sm"
+                className="absolute right-4 sm:right-8 top-1/2 -translate-y-1/2 z-10 p-3 bg-black/10 rounded-full text-white hover:bg-black/30 transition-all backdrop-blur-sm"
                 aria-label="Next slide"
             >
                 <ChevronRight className="h-6 w-6 sm:h-8 sm:w-8" />

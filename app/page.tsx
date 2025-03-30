@@ -6,6 +6,7 @@ import Info from "@/components/Info";
 import LatestEvents from "@/components/LatestEvents";
 import LatestNews from "@/components/LatestNews";
 import MapSection from "@/components/MapSection";
+import Newsletter from "@/components/Newsletter";
 import Principal from "@/components/Principal";
 import { galleryImages, latestEvents, latestNews } from "@/data/dummy";
 import { Calendar, ChevronRight, MapPin, Phone, School } from "lucide-react";
@@ -21,12 +22,13 @@ export default function Home() {
       {/* Quick Info */}
       <Info />
       <Principal />
-      {/* Gallery Preview */}
-     <GalleryDisplay/>
       {/* Latest Events */}
       <LatestEvents/>
       {/* Latest News */}
      <LatestNews/>
+     <Newsletter/>
+      {/* Gallery Preview */}
+     <GalleryDisplay/>
       {/* Map Section */}
      <MapSection/>
     </main>

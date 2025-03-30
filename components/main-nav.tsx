@@ -129,12 +129,12 @@ export function MainNav() {
         />
         <div>
           <span className="text-xl font-bold text-[#D41D33]">Vedanga</span>
-          <span className="hidden md:inline text-xl font-bold text-gray-700"> International School</span>
+          <span className="hidden md:inline lg:hidden xl:inline text-xl font-bold text-gray-700"> International School</span>
         </div>
       </Link>
 
       {/* Desktop Navigation */}
-      <NavigationMenu className="hidden md:flex">
+      <NavigationMenu className="hidden lg:flex">
         <NavigationMenuList className="space-x-2">
           <NavigationMenuItem>
             <NavigationMenuTrigger className="bg-transparent hover:bg-gray-50">About</NavigationMenuTrigger>
@@ -233,7 +233,7 @@ export function MainNav() {
       </NavigationMenu>
 
       {/* Mobile Navigation */}
-      <div className="md:hidden">
+      <div className="lg:hidden">
         <Sheet open={open} onOpenChange={setOpen}>
           <SheetTrigger asChild>
             <Button variant="ghost" size="icon">
