@@ -1,37 +1,37 @@
 "use client";
 
 import { GalleryImages } from '@/data/dummy';
-import { motion } from 'framer-motion';
-import { ChevronLeft, ChevronRight, Download, Expand, Search, Share2, X, ZoomIn, ZoomOut } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ChevronLeft, ChevronRight, Download, Share2, X } from 'lucide-react';
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
-import Link from 'next/link';
+import { toast } from 'sonner';
 
 const GalleryDisplay = () => {
     const [selectedImage, setSelectedImage] = useState<number | null>(null);
-    const [isZoomed, setIsZoomed] = useState(false);
-    const [searchQuery, setSearchQuery] = useState("");
+    const [currentIndex, setCurrentIndex] = useState(0);
+    const [direction, setDirection] = useState<'left' | 'right'>('right');
 
-    const filteredImages = GalleryImages.filter(img =>
-        img.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        img.description.toLowerCase().includes(searchQuery.toLowerCase())
-    );
+    const visibleImages = [
+        GalleryImages[(currentIndex - 1 + GalleryImages.length) % GalleryImages.length],
+        GalleryImages[currentIndex],
+        GalleryImages[(currentIndex + 1) % GalleryImages.length]
+    ];
 
-    const selectedImageData = GalleryImages.find(img => img.id === selectedImage);
-    const currentIndex = selectedImage ? GalleryImages.findIndex(img => img.id === selectedImage) : -1;
+    const navigateImage = (dir: 'prev' | 'next') => {
+        setDirection(dir === 'prev' ? 'left' : 'right');
 
-    const navigateImage = (direction: 'prev' | 'next') => {
-        if (currentIndex === -1) return;
-
-        let newIndex;
-        if (direction === 'prev') {
-            newIndex = (currentIndex - 1 + GalleryImages.length) % GalleryImages.length;
+        if (dir === 'prev') {
+            setCurrentIndex(prev => (prev - 1 + GalleryImages.length) % GalleryImages.length);
         } else {
-            newIndex = (currentIndex + 1) % GalleryImages.length;
+            setCurrentIndex(prev => (prev + 1) % GalleryImages.length);
         }
+    };
 
-        setSelectedImage(GalleryImages[newIndex].id);
-        setIsZoomed(false);
+    const openImage = (id: number) => {
+        const index = GalleryImages.findIndex(img => img.id === id);
+        setCurrentIndex(index);
+        setSelectedImage(id);
     };
 
     // Keyboard navigation
@@ -48,24 +48,19 @@ const GalleryDisplay = () => {
                     break;
                 case 'Escape':
                     setSelectedImage(null);
-                    setIsZoomed(false);
-                    break;
-                case 'z':
-                case 'Z':
-                    setIsZoomed(!isZoomed);
                     break;
             }
         };
 
         window.addEventListener('keydown', handleKeyDown);
         return () => window.removeEventListener('keydown', handleKeyDown);
-    }, [selectedImage, isZoomed, currentIndex]);
+    }, [selectedImage, currentIndex]);
 
     return (
-        <section className="py-20 bg-gradient-to-b from-white to-gray-50">
+        <section className="py-12 bg-gradient-to-b from-white to-gray-50">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <motion.div
-                    className="text-center mb-12"
+                    className="text-center mb-0"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5 }}
@@ -81,182 +76,184 @@ const GalleryDisplay = () => {
                     </p>
                 </motion.div>
 
-                <motion.div
-                    className="relative w-full md:w-64 mx-auto mb-12"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: 0.3 }}
-                >
-                    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
-                    <input
-                        type="text"
-                        placeholder="Search gallery..."
-                        value={searchQuery}
-                        onChange={(e) => setSearchQuery(e.target.value)}
-                        className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-full focus:outline-none focus:ring-2 focus:ring-[#D41D33] focus:border-transparent"
-                    />
-                </motion.div>
+                {/* Carousel Container */}
+                <div className="relative h-[540px] w-full overflow-hidden">
+                    {/* Navigation Arrows */}
+                    <button
+                        onClick={() => navigateImage('prev')}
+                        className="absolute left-4 top-1/2 -translate-y-1/2 z-10 p-2 bg-white/80 rounded-full shadow-lg hover:bg-white transition-colors"
+                    >
+                        <ChevronLeft className="h-6 w-6 text-[#D41D33]" />
+                    </button>
+                    <button
+                        onClick={() => navigateImage('next')}
+                        className="absolute right-4 top-1/2 -translate-y-1/2 z-10 p-2 bg-white/80 rounded-full shadow-lg hover:bg-white transition-colors"
+                    >
+                        <ChevronRight className="h-6 w-6 text-[#D41D33]" />
+                    </button>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                    {filteredImages.slice(0, 8).map((image, index) => (
-                        <motion.div
-                            key={image.id}
-                            className="relative group cursor-pointer bg-white rounded-xl shadow-lg overflow-hidden"
-                            initial={{ opacity: 0, scale: 0.9 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            transition={{ duration: 0.5, delay: index * 0.1 }}
-                            onClick={() => setSelectedImage(image.id)}
-                        >
-                            <div className="relative aspect-square overflow-hidden">
-                                <Image
-                                    src={image.src}
-                                    alt={image.title}
-                                    fill
-                                    className="object-cover transition-transform duration-500 group-hover:scale-105"
-                                    sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"
-                                />
-                                <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                                    <Expand className="h-8 w-8 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                                </div>
-                                <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                    <h3 className="text-white font-medium">{image.title}</h3>
-                                    <p className="text-white/80 text-sm line-clamp-1">{image.description}</p>
-                                </div>
-                            </div>
-                        </motion.div>
+                    {/* Carousel Images */}
+                    <div className="relative h-full w-full flex items-center justify-center">
+                        <AnimatePresence custom={direction} initial={false}>
+                            {visibleImages.map((image, index) => (
+                                <motion.div
+                                    key={`${image.id}-${currentIndex}`}
+                                    className={`absolute flex items-center justify-center ${index === 1 ? 'z-10' : 'z-0'}`}
+                                    style={{
+                                        width: index === 1 ? '60%' : '30%',
+                                        height: index === 1 ? '80%' : '70%',
+                                    }}
+                                    custom={direction}
+                                    initial={{
+                                        x: index === 0 ? '-100%' : index === 2 ? '100%' : '0%',
+                                        opacity: index === 1 ? 1 : 0.7,
+                                        scale: index === 1 ? 1 : 0.8
+                                    }}
+                                    animate={{
+                                        x: index === 0 ? '-50%' : index === 2 ? '50%' : '0%',
+                                        opacity: index === 1 ? 1 : 0.7,
+                                        scale: index === 1 ? 1 : 0.9
+                                    }}
+                                    exit={{
+                                        x: direction === 'right' ? '-100%' : '100%',
+                                        opacity: 0,
+                                        scale: 0.8
+                                    }}
+                                    transition={{ duration: 0.5 }}
+                                    onClick={() => openImage(image.id)}
+                                >
+                                    <div className={`relative w-full h-full bg-white rounded-xl shadow-xl overflow-hidden cursor-pointer transition-all duration-300}`}>
+                                        <Image
+                                            src={image.src}
+                                            alt={image.title}
+                                            fill
+                                            className="object-cover"
+                                            priority={index === 1}
+                                        />
+                                        <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                                            <div className="text-white text-center w-full">
+                                                <h3 className="text-lg font-semibold">{image.title}</h3>
+                                                <p className="text-sm line-clamp-2">{image.description}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </motion.div>
+                            ))}
+                        </AnimatePresence>
+                    </div>
+                </div>
+
+                {/* Image Indicator */}
+                <div className="flex justify-center mt-8 gap-2">
+                    {GalleryImages.map((_, index) => (
+                        <button
+                            key={index}
+                            onClick={() => setCurrentIndex(index)}
+                            className={`w-3 h-3 rounded-full transition-all ${currentIndex === index ? 'bg-[#D41D33] w-6' : 'bg-gray-300'}`}
+                        />
                     ))}
                 </div>
 
-                <div className="text-center mt-12">
-                    <Link
-                        href="/campus-life/gallery"
-                        className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-[#D41D33] hover:bg-[#A3162A] transition-colors shadow-lg hover:shadow-xl"
-                    >
-                        View Full Gallery
-                        <ChevronRight className="h-5 w-5 ml-2 group-hover:translate-x-1 transition-transform" />
-                    </Link>
-                </div>
+                {/* Fullscreen Modal */}
+                <AnimatePresence>
+                    {selectedImage !== null && (
+                        <motion.div
+                            className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4"
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                        >
+                            <div className="relative w-full max-w-6xl h-full  flex flex-col">
+                                {/* Top action bar */}
+                                <div className="flex justify-between items-center p-4 bg-black/50 rounded-t-lg">
+                                    <div className="flex items-center gap-2">
+                                        <button
+                                            onClick={() => {
+                                                navigator.clipboard.writeText(window.location.href);
+                                                toast.success('Link copied to clipboard!');
+                                            }}
+                                            className="p-2 bg-white/80 rounded-full hover:bg-white transition-colors"
+                                            title="Share"
+                                        >
+                                            <Share2 className="h-5 w-5 text-gray-800" />
+                                        </button>
+                                        <button
+                                            onClick={() => {
+                                                const link = document.createElement('a');
+                                                link.href = GalleryImages[currentIndex].src;
+                                                link.download = `image-${GalleryImages[currentIndex].id}.jpg`;
+                                                document.body.appendChild(link);
+                                                link.click();
+                                                document.body.removeChild(link);
+                                            }}
+                                            className="p-2 bg-white/80 rounded-full hover:bg-white transition-colors"
+                                            title="Download"
+                                        >
+                                            <Download className="h-5 w-5 text-gray-800" />
+                                        </button>
+                                    </div>
 
-                {/* Enhanced Modal with Carousel */}
-                {selectedImage && (
-                    <motion.div
-                        className="fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center p-4"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        onClick={() => setIsZoomed(false)}
-                    >
-                        <div className="relative max-w-6xl w-full max-h-screen">
-                            {/* Close button */}
-                            <button
-                                onClick={(e) => {
-                                    e.stopPropagation();
-                                    setSelectedImage(null);
-                                    setIsZoomed(false);
-                                }}
-                                className="absolute -top-12 right-0 text-white hover:text-gray-300 transition-colors z-10"
-                            >
-                                <X className="h-8 w-8" />
-                            </button>
+                                    <button
+                                        onClick={() => setSelectedImage(null)}
+                                        className="p-2 text-white hover:text-gray-300 transition-colors"
+                                    >
+                                        <X className="h-6 w-6" />
+                                    </button>
+                                </div>
 
-                            {/* Navigation arrows */}
-                            <button
-                                onClick={(e) => {
-                                    e.stopPropagation();
-                                    navigateImage('prev');
-                                }}
-                                className="absolute left-4 top-1/2 -translate-y-1/2 p-2 bg-white/30 hover:bg-white/50 rounded-full transition-colors z-10"
-                            >
-                                <ChevronLeft className="h-8 w-8 text-white" />
-                            </button>
-                            <button
-                                onClick={(e) => {
-                                    e.stopPropagation();
-                                    navigateImage('next');
-                                }}
-                                className="absolute right-4 top-1/2 -translate-y-1/2 p-2 bg-white/30 hover:bg-white/50 rounded-full transition-colors z-10"
-                            >
-                                <ChevronRight className="h-8 w-8 text-white" />
-                            </button>
-
-                            {/* Action buttons */}
-                            <div className="absolute top-4 right-4 flex gap-2 z-10">
-                                <button
-                                    onClick={(e) => {
-                                        e.stopPropagation();
-                                        navigator.clipboard.writeText(window.location.href);
-                                        alert('Link copied to clipboard!');
-                                    }}
-                                    className="p-2 bg-white/80 rounded-full hover:bg-white transition-colors"
-                                    title="Share"
-                                >
-                                    <Share2 className="h-5 w-5 text-gray-800" />
-                                </button>
-                                <button
-                                    onClick={(e) => {
-                                        e.stopPropagation();
-                                        const link = document.createElement('a');
-                                        link.href = selectedImageData?.src || '';
-                                        link.download = `image-${selectedImageData?.id}.jpg`;
-                                        document.body.appendChild(link);
-                                        link.click();
-                                        document.body.removeChild(link);
-                                    }}
-                                    className="p-2 bg-white/80 rounded-full hover:bg-white transition-colors"
-                                    title="Download"
-                                >
-                                    <Download className="h-5 w-5 text-gray-800" />
-                                </button>
-                                <button
-                                    onClick={(e) => {
-                                        e.stopPropagation();
-                                        setIsZoomed(!isZoomed);
-                                    }}
-                                    className="p-2 bg-white/80 rounded-full hover:bg-white transition-colors"
-                                    title={isZoomed ? "Zoom Out" : "Zoom In"}
-                                >
-                                    {isZoomed ? (
-                                        <ZoomOut className="h-5 w-5 text-gray-800" />
-                                    ) : (
-                                        <ZoomIn className="h-5 w-5 text-gray-800" />
-                                    )}
-                                </button>
-                            </div>
-
-                            {/* Image display */}
-                            <motion.div
-                                className="relative w-full h-full"
-                                initial={{ scale: 0.9, opacity: 0 }}
-                                animate={{ scale: 1, opacity: 1 }}
-                                transition={{ duration: 0.3 }}
-                                onClick={(e) => e.stopPropagation()}
-                            >
-                                <div className={`overflow-auto ${isZoomed ? 'cursor-zoom-out' : 'cursor-zoom-in'}`}>
-                                    <Image
-                                        src={selectedImageData?.src || ''}
-                                        alt={selectedImageData?.title || 'Selected image'}
-                                        width={1200}
-                                        height={800}
-                                        className={`mx-auto ${isZoomed ? 'w-auto h-auto max-w-none' : 'w-full h-auto max-h-[80vh] object-contain'}`}
+                                {/* Image container */}
+                                <div className="relative flex-1 flex items-center justify-center">
+                                    <button
                                         onClick={(e) => {
                                             e.stopPropagation();
-                                            setIsZoomed(!isZoomed);
+                                            navigateImage('prev');
                                         }}
-                                    />
+                                        className="absolute left-4 top-1/2 -translate-y-1/2 p-3 bg-white/80 rounded-full hover:bg-white transition-colors z-10"
+                                    >
+                                        <ChevronLeft className="h-6 w-6 text-[#D41D33]" />
+                                    </button>
+
+                                    <motion.div
+                                        key={currentIndex}
+                                        className="w-full h-full flex items-center justify-center"
+                                        initial={{ opacity: 0 }}
+                                        animate={{ opacity: 1 }}
+                                        exit={{ opacity: 0 }}
+                                        transition={{ duration: 0.3 }}
+                                    >
+                                        <Image
+                                            src={GalleryImages[currentIndex].src}
+                                            alt={GalleryImages[currentIndex].title}
+                                            width={1200}
+                                            height={800}
+                                            className="object-contain max-w-full max-h-[500px]"
+                                            priority
+                                        />
+                                    </motion.div>
+
+                                    <button
+                                        onClick={(e) => {
+                                            e.stopPropagation();
+                                            navigateImage('next');
+                                        }}
+                                        className="absolute right-4 top-1/2 -translate-y-1/2 p-3 bg-white/80 rounded-full hover:bg-white transition-colors z-10"
+                                    >
+                                        <ChevronRight className="h-6 w-6 text-[#D41D33]" />
+                                    </button>
                                 </div>
 
                                 {/* Image info */}
-                                <div className="mt-4 text-white text-center">
-                                    <h3 className="text-xl font-semibold">{selectedImageData?.title}</h3>
-                                    <p className="text-gray-300">{selectedImageData?.description}</p>
-                                    <p className="text-sm text-gray-400 mt-2">
+                                <div className="p-4 bg-black/50 rounded-b-lg text-white text-center">
+                                    <h3 className="text-lg font-semibold">{GalleryImages[currentIndex].title}</h3>
+                                    <p className="text-gray-300 text-sm">{GalleryImages[currentIndex].description}</p>
+                                    <p className="text-xs text-gray-400 mt-2">
                                         {currentIndex + 1} of {GalleryImages.length}
                                     </p>
                                 </div>
-                            </motion.div>
-                        </div>
-                    </motion.div>
-                )}
+                            </div>
+                        </motion.div>
+                    )}
+                </AnimatePresence>
             </div>
         </section>
     );

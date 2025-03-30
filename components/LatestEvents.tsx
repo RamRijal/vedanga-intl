@@ -5,11 +5,11 @@ import Link from 'next/link'
 
 const LatestEvents = () => {
     return (
-        <section className="py-20 bg-gradient-to-b from-gray-50 to-white">
+        <section className="py-20 bg-gradient-to-b from-gray-100 to-gray-50">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="text-center mb-12">
                     <span className="inline-block px-3 py-1 text-sm font-semibold text-[#D41D33] bg-[#D41D33]/10 rounded-full mb-4">
-                        What's Happening
+                        What&apos;s Happening
                     </span>
                     <h2 className="text-4xl font-bold text-gray-900 mb-4">
                         Latest <span className="text-[#D41D33]">Events</span>

@@ -11,7 +11,7 @@ const teamMembers = [
     role: "Principal",
     image: "https://images.unsplash.com/photo-1573496799652-408c2ac9fe98?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
     qualifications: "Ph.D. in Education Leadership",
-    experience: "20+ years in education",
+    subject: "Science and Mathematics",
     email: "s.johnson@school.edu",
     phone: "+1 (555) 123-4567"
   },
@@ -20,7 +20,7 @@ const teamMembers = [
     role: "Vice Principal",
     image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
     qualifications: "M.Ed. in Educational Administration",
-    experience: "15+ years in teaching",
+    subject: "Optional Mathematics",
     email: "j.smith@school.edu",
     phone: "+1 (555) 234-5678"
   },
@@ -29,7 +29,7 @@ const teamMembers = [
     role: "Head of Sciences",
     image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
     qualifications: "M.Sc. in Physics",
-    experience: "12+ years in science education",
+    subject: "Health education",
     email: "e.brown@school.edu",
     phone: "+1 (555) 345-6789"
   },
@@ -38,7 +38,7 @@ const teamMembers = [
     role: "Head of Mathematics",
     image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
     qualifications: "M.Sc. in Mathematics",
-    experience: "10+ years in mathematics",
+    subject: "Social studies",
     email: "d.wilson@school.edu",
     phone: "+1 (555) 456-7890"
   },
@@ -47,7 +47,7 @@ const teamMembers = [
     role: "Head of Languages",
     image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
     qualifications: "M.A. in English Literature",
-    experience: "14+ years in language teaching",
+    subject: "English and Grammar",
     email: "l.chen@school.edu",
     phone: "+1 (555) 567-8901"
   },
@@ -56,7 +56,7 @@ const teamMembers = [
     role: "Head of Arts",
     image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
     qualifications: "M.F.A. in Fine Arts",
-    experience: "16+ years in arts education",
+    subject: "Nepali",
     email: "r.taylor@school.edu",
     phone: "+1 (555) 678-9012"
   }
@@ -86,7 +86,7 @@ export default function OurTeam() {
             Faculty & Staff
           </span>
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            Meet Our <span className="text-[#D41D33]">Exceptional</span> Team
+            Meet Our <span className="text-[#D41D33]">Professionals</span> 
           </h1>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto">
             Our dedicated educators bring passion, expertise, and innovation to create an inspiring learning environment
@@ -124,15 +124,15 @@ export default function OurTeam() {
                   <div className="flex items-start gap-3">
                     <Award className="h-5 w-5 mt-0.5 text-[#D41D33] flex-shrink-0" />
                     <div>
-                      <p className="text-sm font-medium text-gray-500">Qualifications</p>
+                      <p className="text-sm font-medium text-gray-500">Experience</p>
                       <p className="text-gray-700">{member.qualifications}</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
                     <BookOpen className="h-5 w-5 mt-0.5 text-[#D41D33] flex-shrink-0" />
                     <div>
-                      <p className="text-sm font-medium text-gray-500">Experience</p>
-                      <p className="text-gray-700">{member.experience}</p>
+                      <p className="text-sm font-medium text-gray-500">Subject Core</p>
+                      <p className="text-gray-700">{member.subject}</p>
                     </div>
                   </div>
                 </div>
