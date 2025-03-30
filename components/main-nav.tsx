@@ -13,22 +13,37 @@ import {
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 import { cn } from "@/lib/utils";
-import { School, GraduationCap, Users, Target, Calendar, BookOpen, Image as ImageIcon, Newspaper, BriefcaseBusiness, PhoneCall } from "lucide-react";
+import {
+  School,
+  GraduationCap,
+  Users,
+  Target,
+  Calendar,
+  BookOpen,
+  Image as ImageIcon,
+  Newspaper,
+  BriefcaseBusiness,
+  PhoneCall,
+  Menu,
+  X
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
 const aboutItems = [
-  { 
+  {
     title: "Principal's Message",
     href: "/about/principal-message",
     description: "Welcome message from our school principal",
     icon: <Users className="h-5 w-5 text-[#D41D33]" />
   },
-  { 
+  {
     title: "Our Team",
     href: "/about/our-team",
     description: "Meet our dedicated faculty and staff",
     icon: <Users className="h-5 w-5 text-[#D41D33]" />
   },
-  { 
+  {
     title: "Vision & Mission",
     href: "/about/vision-mission",
     description: "Our goals and educational philosophy",
@@ -37,19 +52,19 @@ const aboutItems = [
 ];
 
 const academicsItems = [
-  { 
+  {
     title: "Curriculum",
     href: "/academics/curriculum",
     description: "Our comprehensive educational programs",
     icon: <BookOpen className="h-5 w-5 text-[#D41D33]" />
   },
-  { 
+  {
     title: "Programs",
     href: "/academics/programs",
     description: "Specialized academic offerings",
     icon: <GraduationCap className="h-5 w-5 text-[#D41D33]" />
   },
-  { 
+  {
     title: "Calendar",
     href: "/academics/calendar",
     description: "Academic year schedule and events",
@@ -58,19 +73,19 @@ const academicsItems = [
 ];
 
 const campusLifeItems = [
-  { 
+  {
     title: "Events",
     href: "/campus-life/events",
     description: "School events and activities",
     icon: <Calendar className="h-5 w-5 text-[#D41D33]" />
   },
-  { 
+  {
     title: "Clubs",
     href: "/campus-life/clubs",
     description: "Student clubs and organizations",
     icon: <Users className="h-5 w-5 text-[#D41D33]" />
   },
-  { 
+  {
     title: "Gallery",
     href: "/campus-life/gallery",
     description: "Photos of school life and events",
@@ -79,19 +94,19 @@ const campusLifeItems = [
 ];
 
 const newsItems = [
-  { 
+  {
     title: "Latest News",
     href: "/news",
     description: "Recent updates and announcements",
     icon: <Newspaper className="h-5 w-5 text-[#D41D33]" />
   },
-  { 
+  {
     title: "Notices",
     href: "/news/notices",
     description: "Important notifications and circulars",
     icon: <Newspaper className="h-5 w-5 text-[#D41D33]" />
   },
-  { 
+  {
     title: "Newsletter",
     href: "/news/newsletter",
     description: "School newsletters and publications",
@@ -100,6 +115,8 @@ const newsItems = [
 ];
 
 export function MainNav() {
+  const [open, setOpen] = React.useState(false);
+
   return (
     <div className="flex items-center justify-between w-full">
       <Link href="/" className="flex items-center space-x-2">
@@ -116,6 +133,7 @@ export function MainNav() {
         </div>
       </Link>
 
+      {/* Desktop Navigation */}
       <NavigationMenu className="hidden md:flex">
         <NavigationMenuList className="space-x-2">
           <NavigationMenuItem>
@@ -213,6 +231,59 @@ export function MainNav() {
           </NavigationMenuItem>
         </NavigationMenuList>
       </NavigationMenu>
+
+      {/* Mobile Navigation */}
+      <div className="md:hidden">
+        <Sheet open={open} onOpenChange={setOpen}>
+          <SheetTrigger asChild>
+            <Button variant="ghost" size="icon">
+              {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            </Button>
+          </SheetTrigger>
+          <SheetContent side="right" className="w-[300px] sm:w-[400px]">
+            <div className="flex flex-col h-full">
+              <div className="mt-4 space-y-1">
+                <MobileNavItem
+                  title="About"
+                  items={aboutItems}
+                  onClose={() => setOpen(false)}
+                />
+                <MobileNavItem
+                  title="Academics"
+                  items={academicsItems}
+                  onClose={() => setOpen(false)}
+                />
+                <MobileNavItem
+                  title="Campus Life"
+                  items={campusLifeItems}
+                  onClose={() => setOpen(false)}
+                />
+                <MobileNavItem
+                  title="News & Updates"
+                  items={newsItems}
+                  onClose={() => setOpen(false)}
+                />
+                <Link
+                  href="/careers"
+                  className="flex items-center px-4 py-3 text-sm font-medium rounded-md hover:bg-gray-100"
+                  onClick={() => setOpen(false)}
+                >
+                  <BriefcaseBusiness className="h-5 w-5 mr-3 text-[#D41D33]" />
+                  Careers
+                </Link>
+                <Link
+                  href="/contact"
+                  className="flex items-center px-4 py-3 text-sm font-medium rounded-md hover:bg-gray-100"
+                  onClick={() => setOpen(false)}
+                >
+                  <PhoneCall className="h-5 w-5 mr-3 text-[#D41D33]" />
+                  Contact
+                </Link>
+              </div>
+            </div>
+          </SheetContent>
+        </Sheet>
+      </div>
     </div>
   );
 }
@@ -245,3 +316,58 @@ const ListItem = React.forwardRef<
   );
 });
 ListItem.displayName = "ListItem";
+
+interface MobileNavItemProps {
+  title: string;
+  items: {
+    title: string;
+    href: string;
+    description: string;
+    icon: React.ReactNode;
+  }[];
+  onClose: () => void;
+}
+
+const MobileNavItem = ({ title, items, onClose }: MobileNavItemProps) => {
+  const [open, setOpen] = React.useState(false);
+
+  return (
+    <div className="border-b border-gray-200">
+      <button
+        className="flex items-center justify-between w-full px-4 py-3 text-sm font-medium rounded-md hover:bg-gray-100"
+        onClick={() => setOpen(!open)}
+      >
+        <div className="flex items-center">
+          <span>{title}</span>
+        </div>
+        <svg
+          className={`w-4 h-4 transition-transform ${open ? "rotate-180" : ""}`}
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+        </svg>
+      </button>
+      {open && (
+        <div className="pl-4 py-2 space-y-1">
+          {items.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className="flex items-center px-4 py-2 text-sm rounded-md hover:bg-gray-100"
+              onClick={() => {
+                onClose();
+                setOpen(false);
+              }}
+            >
+              {item.icon}
+              <span className="ml-3">{item.title}</span>
+            </Link>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+};
