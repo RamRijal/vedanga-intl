@@ -60,7 +60,7 @@ const GalleryDisplay = () => {
         <section className="py-12 bg-gradient-to-b from-white to-gray-50">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <motion.div
-                    className="text-center mb-0"
+                    className="text-center mb-4"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5 }}
@@ -100,29 +100,33 @@ const GalleryDisplay = () => {
                                     key={`${image.id}-${currentIndex}`}
                                     className={`absolute flex items-center justify-center ${index === 1 ? 'z-10' : 'z-0'}`}
                                     style={{
-                                        width: index === 1 ? '60%' : '30%',
-                                        height: index === 1 ? '80%' : '70%',
+                                        width: index === 1 ? '60%' : '25%',
+                                        height: index === 1 ? '80%' : '60%',
+                                        left: index === 0 ? '10%' : index === 2 ? '65%' : '20%',
+                                        transform: 'translateX(-50%)'
                                     }}
                                     custom={direction}
                                     initial={{
                                         x: index === 0 ? '-100%' : index === 2 ? '100%' : '0%',
-                                        opacity: index === 1 ? 1 : 0.7,
+                                        opacity: index === 1 ? 1 : 0.5,
                                         scale: index === 1 ? 1 : 0.8
                                     }}
                                     animate={{
-                                        x: index === 0 ? '-50%' : index === 2 ? '50%' : '0%',
-                                        opacity: index === 1 ? 1 : 0.7,
-                                        scale: index === 1 ? 1 : 0.9
+                                        x: '0%',
+                                        opacity: index === 1 ? 1 : 0.5,
+                                        scale: index === 1 ? 1 : 0.9,
+                                        filter: index === 1 ? 'none' : 'brightness(0.7)'
                                     }}
                                     exit={{
                                         x: direction === 'right' ? '-100%' : '100%',
                                         opacity: 0,
-                                        scale: 0.8
+                                        scale: 0
                                     }}
                                     transition={{ duration: 0.5 }}
                                     onClick={() => openImage(image.id)}
                                 >
-                                    <div className={`relative w-full h-full bg-white rounded-xl shadow-xl overflow-hidden cursor-pointer transition-all duration-300}`}>
+                                    <div className={`relative w-full h-full bg-white rounded-xl shadow-xl overflow-hidden cursor-pointer transition-all duration-300 ${index === 1 ? 'ring-2 ring-[#FB9B1E]' : ''
+                                        }`}>
                                         <Image
                                             src={image.src}
                                             alt={image.title}
@@ -130,12 +134,12 @@ const GalleryDisplay = () => {
                                             className="object-cover"
                                             priority={index === 1}
                                         />
-                                        <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                                        {/* <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
                                             <div className="text-white text-center w-full">
                                                 <h3 className="text-lg font-semibold">{image.title}</h3>
                                                 <p className="text-sm line-clamp-2">{image.description}</p>
                                             </div>
-                                        </div>
+                                        </div> */}
                                     </div>
                                 </motion.div>
                             ))}
@@ -144,7 +148,7 @@ const GalleryDisplay = () => {
                 </div>
 
                 {/* Image Indicator */}
-                <div className="flex justify-center mt-8 gap-2">
+                <div className="flex justify-center my-4 gap-2">
                     {GalleryImages.map((_, index) => (
                         <button
                             key={index}
@@ -163,7 +167,7 @@ const GalleryDisplay = () => {
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
                         >
-                            <div className="relative w-full max-w-6xl h-full  flex flex-col">
+                            <div className="relative w-full max-w-6xl h-full max-h-[90vh] flex flex-col">
                                 {/* Top action bar */}
                                 <div className="flex justify-between items-center p-4 bg-black/50 rounded-t-lg">
                                     <div className="flex items-center gap-2">
@@ -201,18 +205,28 @@ const GalleryDisplay = () => {
                                     </button>
                                 </div>
 
-                                {/* Image container */}
+                                {/* Image container with previews */}
                                 <div className="relative flex-1 flex items-center justify-center">
-                                    <button
+                                    {/* Left preview */}
+                                    <motion.div
+                                        className="absolute left-0 w-1/4 h-full flex items-center justify-center z-10 opacity-50 hover:opacity-80 transition-opacity"
                                         onClick={(e) => {
                                             e.stopPropagation();
                                             navigateImage('prev');
                                         }}
-                                        className="absolute left-4 top-1/2 -translate-y-1/2 p-3 bg-white/80 rounded-full hover:bg-white transition-colors z-10"
                                     >
-                                        <ChevronLeft className="h-6 w-6 text-[#D41D33]" />
-                                    </button>
+                                        <div className="relative w-3/4 h-3/4">
+                                            <Image
+                                                src={GalleryImages[(currentIndex - 1 + GalleryImages.length) % GalleryImages.length].src}
+                                                alt="Previous image"
+                                                fill
+                                                className="object-contain"
+                                            />
+                                        </div>
+                                        <ChevronLeft className="absolute left-2 h-8 w-8 text-white" />
+                                    </motion.div>
 
+                                    {/* Main image */}
                                     <motion.div
                                         key={currentIndex}
                                         className="w-full h-full flex items-center justify-center"
@@ -226,20 +240,29 @@ const GalleryDisplay = () => {
                                             alt={GalleryImages[currentIndex].title}
                                             width={1200}
                                             height={800}
-                                            className="object-contain max-w-full max-h-[500px]"
+                                            className="object-contain max-w-full max-h-full"
                                             priority
                                         />
                                     </motion.div>
 
-                                    <button
+                                    {/* Right preview */}
+                                    <motion.div
+                                        className="absolute right-0 w-1/4 h-full flex items-center justify-center z-10 opacity-50 hover:opacity-80 transition-opacity"
                                         onClick={(e) => {
                                             e.stopPropagation();
                                             navigateImage('next');
                                         }}
-                                        className="absolute right-4 top-1/2 -translate-y-1/2 p-3 bg-white/80 rounded-full hover:bg-white transition-colors z-10"
                                     >
-                                        <ChevronRight className="h-6 w-6 text-[#D41D33]" />
-                                    </button>
+                                        <div className="relative w-3/4 h-3/4">
+                                            <Image
+                                                src={GalleryImages[(currentIndex + 1) % GalleryImages.length].src}
+                                                alt="Next image"
+                                                fill
+                                                className="object-contain"
+                                            />
+                                        </div>
+                                        <ChevronRight className="absolute right-2 h-8 w-8 text-white" />
+                                    </motion.div>
                                 </div>
 
                                 {/* Image info */}

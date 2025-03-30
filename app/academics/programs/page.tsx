@@ -88,6 +88,7 @@ export default function Programs() {
               {/* Image Header */}
               <div className="relative h-48 overflow-hidden">
                 <Image
+                  loading="lazy"
                   src={program.image}
                   alt={program.title}
                   fill

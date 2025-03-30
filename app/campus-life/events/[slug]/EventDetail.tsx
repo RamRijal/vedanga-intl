@@ -91,6 +91,7 @@ export function EventDetail({ event }: { event: Event }) {
                     {/* Hero Image Section */}
                     <div className="relative h-[50vh] max-h-[600px]">
                         <Image
+                            loading="lazy"
                             src={event.image}
                             alt={event.title}
                             fill

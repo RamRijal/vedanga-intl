@@ -4,6 +4,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
+import Image from "next/image";
+import Link from "next/link";
 
 // TODO: Replace with API data
 const latestNotice = {
@@ -11,7 +13,7 @@ const latestNotice = {
   title: "Important: Admission Open for 2024-25",
   date: "March 15, 2024",
   content: "Applications are now being accepted for all grades. Limited seats available.",
-  image: "https://images.unsplash.com/photo-1546410531-bb4caa6b424d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80"
+  image: "/images/foto2.jpg"
 };
 
 export default function NoticeOverlay() {
@@ -52,24 +54,29 @@ export default function NoticeOverlay() {
               <X className="h-5 w-5" />
             </button>
             <div className="relative h-full">
-              <img
+              <Image
+                loading="lazy"
                 src={latestNotice.image}
                 alt={latestNotice.title}
                 className="w-full h-[640px] object-cover"
+                width={1000}
+                height={640}
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-              <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
+              {/* Gradient Overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent pointer-events-none"></div>
+              <div className="absolute bottom-0 left-0 right-0 p-6 text-white z-10">
                 <h2 className="text-2xl font-bold mb-2">{latestNotice.title}</h2>
                 <p className="text-white/90">{latestNotice.date}</p>
-                <button className="px-6 py-2 my-2 bg-[#D41D33] text-white rounded-lg hover:bg-opacity-90 transition-colors">
-                  Learn More
-                </button>
+                <Link target="blank" href={'https://docs.google.com/forms/d/e/1FAIpQLSd-d_vNtskX3Q-68EN1k_LkUHbD4k8BV_Jky95BNFvI9k8J2Q/viewform?usp=header'}>
+                  <button className="px-6 py-2 my-2 bg-[#D41D33] text-white rounded-lg hover:bg-opacity-90 transition-colors">
+                    Learn More
+                  </button>
+                </Link>
               </div>
             </div>
+          </motion.div>
         </motion.div>
-        </motion.div>
-  )
-}
-    </AnimatePresence >
+      )}
+    </AnimatePresence>
   );
 }

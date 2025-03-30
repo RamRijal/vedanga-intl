@@ -44,6 +44,7 @@ export default function VisionMission() {
         >
           <div className="absolute inset-0 bg-gradient-to-r from-[#D41D33]/70 to-[#FF981F]/70 z-10"></div>
           <Image
+            loading="lazy"
             src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
             alt="Future doctor and engineer students working together"
             width={1920}
@@ -89,7 +90,7 @@ export default function VisionMission() {
             </div>
             <p className="text-gray-600 leading-relaxed text-lg">
               To cultivate the next generation of medical pioneers engineering innovators,
-              equipping them with both technical expertise and compassionate leadership to solve humanity's greatest challenges.
+              equipping them with both technical expertise and compassionate leadership to solve humanity&apos;s greatest challenges.
             </p>
             <div className="mt-6 flex gap-4">
               <div className="flex items-center gap-2 text-sm text-[#FF981F]">
@@ -260,7 +261,7 @@ export default function VisionMission() {
                   <h3 className="text-xl font-bold">Computer Science</h3>
                 </div>
                 <p className="text-white/90 mb-4">
-                  Cutting-edge programming and system design for tomorrow's technology leaders.
+                  Cutting-edge programming and system design for tomorrow&apos;s technology leaders.
                 </p>
                 <ul className="text-white/80 text-sm space-y-2">
                   <li className="flex items-start gap-2">
