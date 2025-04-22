@@ -44,15 +44,7 @@ const AnimatedCounter = ({ value, suffix = '' }: { value: number; suffix?: strin
     );
 };
 
-export default function Newsletter() {
-    const [email, setEmail] = useState('');
-
-    const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault();
-        toast.success(`Thank you for subscribing with ${email}`);
-        setEmail('');
-    };
-
+export default function AdmissionCTA() {
     return (
         <div className="w-full min-h-full bg-[#b3182a]">
             <div className="max-w-full mx-auto">
@@ -67,7 +59,7 @@ export default function Newsletter() {
                                 { value: 90, suffix: "%", label: "Graduation Rate" },
                                 { value: 30, suffix: "+", label: "Majors Offered" },
                                 { value: 68, suffix: "", label: "Total Classrooms" },
-                                { value: 3000, suffix: "+", label: "Total Graduates" }
+                                { value: 2, suffix: "k+", label: "Total Graduates" }
                             ].map((stat, index) => (
                                 <motion.div
                                     key={index}
@@ -86,7 +78,7 @@ export default function Newsletter() {
                         </div>
                     </div>
 
-                    {/* Newsletter Section */}
+                    {/* CTA Section */}
                     <div
                         className="lg:col-span-4 shadow-sm p-8 flex flex-col justify-center relative min-h-[500px]"
                         style={{
@@ -99,30 +91,22 @@ export default function Newsletter() {
                         <div className="absolute inset-0 bg-black/50"></div>
                         <div className="relative z-10 p-8 rounded-xl max-w-2xl mx-auto w-full">
                             <div className="text-center mb-8">
-                                <h2 className="text-4xl font-bold text-gray-100 mb-2">Stay Updated</h2>
+                                <h2 className="text-4xl font-bold text-gray-100 mb-2">Admissions are open!</h2>
                                 <p className="text-gray-200">
-                                    Subscribe to our newsletter for the latest news and updates.
+                                    Start your journey with us by applying for admission.
                                 </p>
                             </div>
 
-                            <form onSubmit={handleSubmit} className="space-y-4">
-                                <div className="relative">
-                                    <input
-                                        type="email"
-                                        placeholder="Enter your email"
-                                        value={email}
-                                        onChange={(e) => setEmail(e.target.value)}
-                                        className="w-full px-5 py-4 pr-36 rounded-lg border border-gray-300 focus:border-[#D41D33] focus:ring-2 focus:ring-[#D41D33]/50 transition-all duration-300"
-                                        required
-                                    />
-                                    <button
-                                        type="submit"
-                                        className="absolute right-1 top-1 bottom-1 px-6 bg-[#D41D33] text-white rounded-lg font-medium hover:bg-[#b3182a] transition-all duration-300 flex items-center justify-center"
-                                    >
-                                        Subscribe
-                                    </button>
-                                </div>
-                            </form>
+                            <div className="flex justify-center">
+                                <a
+                                    href="https://docs.google.com/forms/d/e/1FAIpQLSd-d_vNtskX3Q-68EN1k_LkUHbD4k8BV_Jky95BNFvI9k8J2Q/viewform?usp=header"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="px-6 py-4 bg-[#D41D33] text-white rounded-lg font-medium hover:bg-[#b3182a] transition-all duration-300 flex items-center justify-center"
+                                >
+                                    Apply Now
+                                </a>
+                            </div>
 
                             <div className="mt-8 flex justify-center space-x-4">
                                 <button className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center hover:bg-gray-200 transition">

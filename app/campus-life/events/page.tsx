@@ -26,8 +26,8 @@ export default function Events() {
 
     if (diffInDays === 0) return "Today";
     if (diffInDays === 1) return "Yesterday";
-    if (diffInDays < 7) return `${diffInDays} days ago`;
-    if (diffInDays < 30) return `${Math.floor(diffInDays / 7)} week${Math.floor(diffInDays / 7) > 1 ? 's' : ''} ago`;
+    if (diffInDays > 7) return `${diffInDays} days ago`;
+    if (diffInDays > 30) return `${Math.floor(diffInDays / 7)} week${Math.floor(diffInDays / 7) > 1 ? 's' : ''} ago`;
     return eventDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
   };
 
@@ -40,7 +40,7 @@ export default function Events() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <h1 className="text-3xl sm:text-4xl font-bold text-[#D41D33] mb-3">Upcoming Events</h1>
+          <h1 className="text-3xl sm:text-4xl font-bold text-[#D41D33] mb-3">Upcoming Major Events</h1>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto">
             Discover exciting activities and important dates in our school community
           </p>
@@ -90,9 +90,17 @@ export default function Events() {
                     className="object-cover"
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   />
-                  <div className="absolute top-4 right-4 bg-[#FAA02E] text-white px-3 py-1 rounded-full text-sm font-medium shadow-md z-20">
+                  <div
+                    className={`absolute top-4 right-4 ${event.category === 'Academic' ? 'bg-[#D41D33]' :
+                      event.category === 'Sports' ? 'bg-[#FFA500]' :
+                        event.category === 'Community' ? 'bg-[#26a122]' :
+                          event.category === 'Cultural' ? 'bg-[#8B008B]' :
+                            'bg-gray-500'
+                      } text-white px-3 py-1 rounded-full text-sm font-medium shadow-md z-20`}
+                  >
                     {event.category}
                   </div>
+
                 </div>
                 <div className="p-6">
                   <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-[#D41D33] transition-colors">

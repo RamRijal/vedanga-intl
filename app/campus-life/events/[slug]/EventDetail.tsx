@@ -96,7 +96,6 @@ export function EventDetail({ event }: { event: Event }) {
                             alt={event.title}
                             fill
                             className="object-cover"
-                            priority
                             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 60vw"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent" />
@@ -120,9 +119,9 @@ export function EventDetail({ event }: { event: Event }) {
                     </div>
 
                     {/* Content Section */}
-                    <div className="max-w-4xl mx-auto p-6 sm:p-8 md:p-10">
+                    <div className="max-w-5xl mx-auto p-6 sm:p-8 md:p-10">
                         <div
-                            className="prose prose-lg max-w-none mb-12"
+                            className="prose prose-lg max-w-none mb-12 text-justify"
                             dangerouslySetInnerHTML={{ __html: event.description }}
                         />
 

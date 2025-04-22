@@ -128,10 +128,10 @@ const Hero = () => {
                         <motion.div variants={buttonVariants}>
                             <Link
                                 href={"/contact"}
-                                className="inline-flex items-center px-8 py-4 text-lg font-bold bg-[#da973e] text-white rounded-full hover:bg-[#c78835] transition-all duration-100 delay-100 shadow-lg hover:shadow-xl"
+                                className="inline-flex items-center px-6 py-4 text-xl font-bold bg-[#da973e] text-white rounded-full hover:bg-[#c78835] transition-all duration-100 delay-100 shadow-lg hover:shadow-xl"
                             >
                                 {"Contact us"}
-                                <ChevronRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                                <ChevronRight size={40} className="ml-1 h-5 w-5 font-extrabold group-hover:translate-x-1 transition-transform" />
                             </Link>
                         </motion.div>
                     </motion.div>

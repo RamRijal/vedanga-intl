@@ -95,11 +95,7 @@ export default function Notices() {
           ))}
         </div>
 
-        <div className="mt-10 text-center">
-          <button className="px-6 py-3 bg-[#D41D33] text-white rounded-lg hover:bg-[#A3162A] transition-colors shadow-md hover:shadow-lg font-medium">
-            View All 
-          </button>
-        </div>
+       
       </motion.div>
     </div>
   );

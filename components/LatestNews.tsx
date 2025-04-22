@@ -1,11 +1,13 @@
+'use client'
 import { latestNews } from '@/data/dummy'
+import { motion } from 'framer-motion'
 import { Calendar, ChevronRight, Tag } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 
 const LatestNews = () => {
     return (
-        <section className="py-20 bg-gradient-to-b bg-white">
+        <section className="py-12 sm:py-14 lg:py-16 bg-gradient-to-b bg-white">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="text-center mb-12">
                     <span className="inline-block px-3 py-1 text-sm font-semibold text-[#D41D33] bg-[#D41D33]/10 rounded-full mb-4">
@@ -20,7 +22,7 @@ const LatestNews = () => {
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {latestNews.map((newsItem, index) => (
+                    {latestNews.slice(0, 3).map((newsItem, index) => (
                         <div
                             key={index}
                             className="group relative bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 border border-gray-100"
@@ -71,14 +73,20 @@ const LatestNews = () => {
                     ))}
                 </div>
 
-                <div className="text-center mt-12">
+                <motion.div
+                    className="text-center mt-14"
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    transition={{ delay: 0.3 }}
+                    viewport={{ once: true }}
+                >
                     <Link
                         href="/news"
-                        className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-[#D41D33] hover:bg-[#A3162A] transition-colors shadow-lg hover:shadow-xl"
+                        className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-lg text-white bg-[#D41D33] hover:bg-[#A3162A] transition-all shadow-md hover:shadow-lg hover:-translate-y-1"
                     >
-                        View All News Articles
+                        View All NewsArticle
                     </Link>
-                </div>
+                </motion.div>
             </div>
         </section>
     )

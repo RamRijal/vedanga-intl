@@ -126,17 +126,6 @@ export default function News() {
             <p className="text-gray-500 text-lg">No news found in this category</p>
           </motion.div>
         )}
-
-        <motion.div
-          className="mt-12 text-center"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5, delay: 0.4 }}
-        >
-          <button className="px-8 py-3 bg-[#D41D33] text-white rounded-lg hover:bg-[#A3162A] transition-colors shadow-md hover:shadow-lg font-medium">
-            View All News
-          </button>
-        </motion.div>
       </div>
     </div>
   );

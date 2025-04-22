@@ -37,15 +37,7 @@ const programs = [
     ,slug:'secondary-education'
 
   },
-  {
-    title: "International Program",
-    grades: "Grades 11-12",
-    description: "Rigorous Cambridge A-Levels curriculum offering global perspectives, university preparation, and opportunities for international collaboration.",
-    icon: <Globe className="h-8 w-8" />,
-    features: ["A-Level Subjects", "University Preparation", "International Exchange", "Research Projects"],
-    image: "/images/foto15.jpg",
-    color: "bg-red-100 text-red-600"
-  }
+  
 ];
 
 export default function Programs() {

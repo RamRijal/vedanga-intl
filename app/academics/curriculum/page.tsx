@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { BookOpen, Globe, Code, Palette, Music, Calculator, FlaskConical, GraduationCap, Users, BrainCircuit, Languages, Rocket, Leaf, ThermometerSnowflake, Handshake, Footprints, Shield, HopOff, Network, FolderOpenDot, Turtle } from "lucide-react";
+import { BookOpen, BrainCircuit, Calculator, Code, Computer, FlaskConical, FolderOpenDot, Footprints, Globe, HandHeart, Handshake, HopOff, IndianRupee, Languages, Leaf, Music, Network, Palette, Rocket, Shield, Smile, ThermometerIcon, ThermometerSnowflake, Turtle, Users, WholeWord } from "lucide-react";
 import { useState } from "react";
 
 interface Subject {
@@ -22,37 +22,98 @@ interface Pillar {
 
 const subjects: Subjects = {
   "Core": [
-    { name: "English", icon: <BookOpen />, description: "Comprehensive literature studies and creative writing" },
-    { name: "Mathematics", icon: <Calculator />, description: "Problem-solving with real-world applications" },
-    { name: "Sciences", icon: <FlaskConical />, description: "Hands-on experiments across scientific disciplines" },
-    { name: "Social", icon: <Handshake />, description: "Comprehensive literature studies and creative writing" },
-    { name: "Health and Environment", icon: <ThermometerSnowflake />, description: "Problem-solving with real-world applications" },
-  ],
+    {
+      name: "English",
+      icon: <BookOpen />,
+      description: "Comprehensive literature studies, creative writing, and language proficiency development."
+    },
+    {
+      name: "Mathematics",
+      icon: <Calculator />,
+      description: "Problem-solving techniques with real-world applications and logical reasoning."
+    },
+    {
+      name: "Sciences",
+      icon: <FlaskConical />,
+      description: "Hands-on experiments and theoretical knowledge across scientific disciplines."
+    },
+    {
+      name: "Social Studies",
+      icon: <Handshake />,
+      description: "Exploration of history, geography, and social structures to foster global awareness."
+    },
+    {
+      name: "Health, Sanitation and Physical Education",
+      icon: <ThermometerIcon />,
+      description: "Promoting health, hygiene, and physical fitness through interactive activities."
+    },
+    {
+      name: "Computer",
+      icon: <Computer />,
+      description: "Digital literacy, programming basics, and practical applications of technology."
+    },
+    {
+      name: "Nepali",
+      icon: <Languages />,
+      description: "Cultural heritage and language mastery through literature and communication skills."
+    },
+    {
+      name: "Moral and Civic Education",
+      icon: <Smile />,
+      description: "Building ethical values, civic responsibility, and social awareness."
+    },],
   "Languages": [
-    { name: "Nepali", icon: <Languages />, description: "Cultural heritage through language mastery" },
-    { name: "English", icon: <Languages />, description: "Cultural heritage through language mastery" },
-    { name: "Newari", icon: <Languages />, description: "Cultural heritage through language mastery" },
-    { name: "Spanish", icon: <Globe />, description: "Global opportunities with Asia's leading language" },
-    { name: "French", icon: <BookOpen />, description: "Language of diplomacy and culture" }
+    {
+      name: "Nepali",
+      icon: <IndianRupee />,
+      description: "Cultural heritage and language mastery through literature and communication skills."
+    },
+    {
+      name: "English",
+      icon: <WholeWord />,
+      description: "Global communication skills and literary exploration."
+    },
+    {
+      name: "Newari",
+      icon: <Languages />,
+      description: "Preservation and promotion of local language and cultural heritage."
+    },
+    {
+      name: "Spanish",
+      icon: <Languages />,
+      description: "Global opportunities and cultural exchange through language proficiency."
+    },
   ],
   "Technology": [
     { name: "Coding", icon: <Code />, description: "Modern programming languages and concepts" },
     { name: "Robotics", icon: <Rocket />, description: "Engineering and creativity combined" },
     { name: "AI Basics", icon: <BrainCircuit />, description: "Introduction to future technologies" }
   ],
-  "Arts": [
-    { name: "Visual Arts", icon: <Palette />, description: "Creative expression through multiple mediums" },
-    { name: "Music", icon: <Music />, description: "Musical theory and performance techniques" },
-    { name: "Drama", icon: <Users />, description: "Confidence through theatrical performance" },
-    { name: "Dance", icon: <Turtle />, description: "Confidence through theatrical performance" },
-  ],
   "Sports": [
-    { name: "Football", icon: <Footprints />, description: "Creative expression through multiple mediums" },
-    { name: "Cricket", icon: <Shield />, description: "Musical theory and performance techniques" },
-    { name: "Basketball", icon: <HopOff />, description: "Confidence through theatrical performance" },
-    { name: "Badminton", icon: <Network />, description: "Confidence through theatrical performance" },
-    { name: "Karate", icon: <FolderOpenDot />, description: "Confidence through theatrical performance" },
+    { name: "Basketball", icon: <HopOff />, description: "Agility, teamwork and strategy on court" },
+    { name: "Cricket", icon: <Shield />, description: "Focus, patience and coordination" },
+    { name: "Volleyball", icon: <Users />, description: "Strengthen reflex and team spirit" },
+    { name: "Table Tennis", icon: <Network />, description: "Speed and precision in motion" },
+    { name: "Football", icon: <Footprints />, description: "Energy, tactics and sportsmanship" },
+    { name: "Badminton", icon: <Rocket />, description: "Fast-paced rallies and fitness" },
+    { name: "Karate", icon: <FolderOpenDot />, description: "Builds strength, discipline and focus" }
   ],
+  "ECA": [
+    { name: "Dance", icon: <Turtle />, description: "Creative expression and movement" },
+    { name: "Skating", icon: <Footprints />, description: "Balance, agility, and fun" },
+    { name: "Karate classes", icon: <Shield />, description: "Discipline and self-defense" },
+    { name: "Woodwork", icon: <FolderOpenDot />, description: "Hands-on creativity with tools" },
+    { name: "Field visit, excursions", icon: <Globe />, description: "Exploring learning beyond classrooms" },
+    { name: "Skill enhancement activities", icon: <BrainCircuit />, description: "Focused sessions on soft and hard skills" },
+    { name: "Cooking", icon: <Leaf />, description: "Culinary skills through guided experience" },
+    { name: "Swimming", icon: <ThermometerSnowflake />, description: "Water safety and physical development" },
+    { name: "Visual Art", icon: <Palette />, description: "Artistic growth with various mediums" },
+    { name: "Sculpting", icon: <Turtle />, description: "3D creative expression" },
+    { name: "Music", icon: <Music />, description: "Theory and performance-based learning" },
+    { name: "Guitar, Keyboard, Madal, Vocal, Cajon", icon: <Music />, description: "Diverse musical training" },
+    { name: "Yoga", icon: <Handshake />, description: "Mind-body balance and mindfulness" }
+  ],
+
 };
 
 const programPillars: Pillar[] = [
@@ -103,8 +164,8 @@ export default function Curriculum() {
             <button
               key={category}
               className={`px-4 py-2 rounded-full text-sm font-medium shadow-md transition-colors ${activeCategory === category
-                  ? 'bg-[#FBA126] text-white'
-                  : 'bg-white text-gray-700 hover:bg-gray-100'
+                ? 'bg-[#FBA126] text-white'
+                : 'bg-white text-gray-700 hover:bg-gray-100'
                 }`}
               onClick={() => setActiveCategory(category)}
             >
@@ -190,11 +251,11 @@ export default function Curriculum() {
                 </div>
                 <div className="flex items-start gap-4">
                   <div className="flex-shrink-0 mt-1 text-[#D41D33]">
-                    <Palette className="w-5 h-5" />
+                    <HandHeart className="w-5 h-5" />
                   </div>
                   <div>
-                    <h4 className="font-medium text-gray-900">Creative Showcases</h4>
-                    <p className="text-gray-600 text-sm">Annual exhibitions of student work</p>
+                    <h4 className="font-medium text-gray-900">Collaborative Leadership</h4>
+                    <p className="text-gray-600 text-sm">Showcase of individual and teamwork brilliance</p>
                   </div>
                 </div>
               </div>

@@ -1,70 +1,10 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Users, Book, Microscope, Palette, Music, Code, Globe, Camera, ChevronRight } from "lucide-react";
+import Link from "next/link";
+import { clubs } from "./ClubData";
+import { ChevronRight, Users } from "lucide-react";
 
-const clubs = [
-  {
-    name: "Science Club",
-    description: "Explore the wonders of science through experiments and research projects",
-    icon: <Microscope className="h-6 w-6" />,
-    members: 45,
-    meetingDay: "Tuesday",
-    activities: ["Lab Experiments", "Science Fair", "Field Trips"],
-    advisor: "Dr. Emily Brown",
-    color: "bg-blue-100 text-blue-600"
-  },
-  {
-    name: "Art & Design Club",
-    description: "Express creativity through various art forms and design projects",
-    icon: <Palette className="h-6 w-6" />,
-    members: 32,
-    meetingDay: "Wednesday",
-    activities: ["Art Exhibitions", "Design Workshops", "Creative Projects"],
-    advisor: "Mr. Robert Taylor",
-    color: "bg-purple-100 text-purple-600"
-  },
-  {
-    name: "Coding Club",
-    description: "Learn programming and build exciting software projects",
-    icon: <Code className="h-6 w-6" />,
-    members: 38,
-    meetingDay: "Thursday",
-    activities: ["Coding Workshops", "Hackathons", "App Development"],
-    advisor: "Ms. Sarah Chen",
-    color: "bg-green-100 text-green-600"
-  },
-  {
-    name: "Photography Club",
-    description: "Capture moments and learn professional photography techniques",
-    icon: <Camera className="h-6 w-6" />,
-    members: 25,
-    meetingDay: "Friday",
-    activities: ["Photo Walks", "Exhibitions", "Workshops"],
-    advisor: "Mr. James Wilson",
-    color: "bg-amber-100 text-amber-600"
-  },
-  {
-    name: "Music Club",
-    description: "Explore musical talents and perform at school events",
-    icon: <Music className="h-6 w-6" />,
-    members: 40,
-    meetingDay: "Monday",
-    activities: ["Band Practice", "Concerts", "Music Theory"],
-    advisor: "Mrs. Lisa Chen",
-    color: "bg-red-100 text-red-600"
-  },
-  {
-    name: "Global Culture Club",
-    description: "Learn about different cultures and international relations",
-    icon: <Globe className="h-6 w-6" />,
-    members: 35,
-    meetingDay: "Wednesday",
-    activities: ["Cultural Events", "Language Exchange", "International Food Fair"],
-    advisor: "Mr. David Park",
-    color: "bg-indigo-100 text-indigo-600"
-  }
-];
 
 export default function Clubs() {
   return (
@@ -133,17 +73,17 @@ export default function Clubs() {
                     </div>
                   </div>
 
-                  <button className="w-full flex items-center justify-center px-4 py-2.5 bg-[#DB2139] text-white rounded-lg hover:bg-[#e94158] transition-colors group">
-                    <span className="font-medium">View details</span>
-                    <ChevronRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-                  </button>
+                  <Link href={ `/campus-life/clubs/${club.slug}`}>
+                    <button className="w-full flex items-center justify-center px-4 py-2.5 bg-[#DB2139] text-white rounded-lg hover:bg-[#e94158] transition-colors group">
+                      <span className="font-medium">View details</span>
+                      <ChevronRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                    </button>
+                  </Link>
                 </div>
               </div>
             </motion.div>
           ))}
         </div>
-
-       
       </div>
     </div>
   );

@@ -55,15 +55,15 @@ export default function NoticeOverlay() {
             </button>
             <div className="relative h-full">
               <Image
-                loading="lazy"
+                priority
                 src={latestNotice.image}
                 alt={latestNotice.title}
-                className="w-full h-[640px] object-cover"
+                className="w-full h-[590px] md:h-[640px] object-cover"
                 width={1000}
-                height={640}
+                height={1000}
               />
               {/* Gradient Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent pointer-events-none"></div>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-white/5 pointer-events-none"></div>
               <div className="absolute bottom-0 left-0 right-0 p-6 text-white z-10">
                 <h2 className="text-2xl font-bold mb-2">{latestNotice.title}</h2>
                 <p className="text-white/90">{latestNotice.date}</p>

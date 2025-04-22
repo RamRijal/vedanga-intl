@@ -51,7 +51,7 @@ export const PROGRAM_DATA: Record<string, ProgramDetail> = {
     grades: "Grades 1-5",
     overview:
       "Our Primary Education program lays the foundation for lifelong learning through a balanced approach that nurtures intellectual curiosity, creativity, and social-emotional development.",
-    heroImage: "/images/primary-hero.jpg",
+    heroImage: "/images/foto4.jpg",
     features: [
       {
         title: "Holistic Development",
@@ -102,9 +102,9 @@ export const PROGRAM_DATA: Record<string, ProgramDetail> = {
       { time: "2:15 - 3:00", activity: "Project Work/Remedial" },
     ],
     gallery: [
-      "/images/primary-1.jpg",
-      "/images/primary-2.jpg",
-      "/images/primary-3.jpg",
+      "/images/foto1.jpg",
+      "/images/foto8.jpg",
+      "/images/foto6.jpg",
     ],
   },
   "middle-school": {
@@ -112,7 +112,7 @@ export const PROGRAM_DATA: Record<string, ProgramDetail> = {
     grades: "Grades 6-8",
     overview:
       "Our Middle School program serves as a bridge between primary and secondary education, focusing on developing critical thinking skills, subject mastery, and personal responsibility.",
-    heroImage: "/images/middle-hero.jpg",
+    heroImage: "/images/foto12.jpg",
     features: [
       {
         title: "Subject Specialization",
@@ -162,9 +162,9 @@ export const PROGRAM_DATA: Record<string, ProgramDetail> = {
       { time: "2:40 - 3:30", activity: "Study Hall/Clubs" },
     ],
     gallery: [
-      "/images/middle-1.jpg",
-      "/images/middle-2.jpg",
-      "/images/middle-3.jpg",
+      "/images/foto2.jpg",
+      "/images/foto18.jpg",
+      "/images/foto3.jpg",
     ],
   },
   "secondary-education": {
@@ -172,7 +172,7 @@ export const PROGRAM_DATA: Record<string, ProgramDetail> = {
     grades: "Grades 9-10",
     overview:
       "Our Secondary Education program prepares students for the SEE examinations while developing advanced academic skills and career awareness through specialized tracks.",
-    heroImage: "/images/secondary-hero.jpg",
+    heroImage: "/images/foto18.jpg",
     features: [
       {
         title: "SEE Preparation",
@@ -234,9 +234,9 @@ export const PROGRAM_DATA: Record<string, ProgramDetail> = {
       { time: "3:15 - 4:00", activity: "Electives/Clubs" },
     ],
     gallery: [
-      "/images/secondary-1.jpg",
-      "/images/secondary-2.jpg",
-      "/images/secondary-3.jpg",
+      "/images/foto15.jpg",
+      "/images/foto16.jpg",
+      "/images/foto19.jpg",
     ],
   },
 };
@@ -290,20 +290,5 @@ export const PROGRAM_LIST: ProgramListItem[] = [
     color: "bg-green-100 text-green-600",
     slug: "secondary-education",
   },
-  {
-    title: "International Program",
-    grades: "Grades 11-12",
-    description:
-      "Rigorous Cambridge A-Levels curriculum offering global perspectives, university preparation, and opportunities for international collaboration.",
-    icon: <Globe className="h-8 w-8" />,
-    features: [
-      "A-Level Subjects",
-      "University Preparation",
-      "International Exchange",
-      "Research Projects",
-    ],
-    image: "/images/foto15.jpg",
-    color: "bg-red-100 text-red-600",
-    slug: "international-program",
-  },
+  
 ];
