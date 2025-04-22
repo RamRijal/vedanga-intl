@@ -4,8 +4,9 @@ import { motion } from "framer-motion";
 import { Mail, Phone, Award, BookOpen, ChevronRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
 
-const teamMembers = [
+const academicTeam = [
   {
     name: "Dr. Sarah Johnson",
     role: "Principal",
@@ -61,6 +62,71 @@ const teamMembers = [
     phone: "+1 (555) 678-9012"
   }
 ];
+const ecaTeam = [
+  {
+    name: "Sudip Shrestha",
+    role: "ECA Coordinator/Futsal Coach (ANFA 1st Batch)",
+    image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+    qualifications: "Former National Player, Former APF Coach 'A' Division, AFC 'C' Licence Coach",
+    subject: "Physical Education",
+    email: "s.shrestha@school.edu",
+    phone: "+977 (123) 456-7890"
+  },
+  {
+    name: "Dambar Bahadur Ale Magar",
+    role: "Karate Instructor",
+    image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+    qualifications: "Former Karate National Player, National Referee, Nepal",
+    subject: "Karate",
+    email: "d.magar@school.edu",
+    phone: "+977 (123) 567-8901"
+  },
+  {
+    name: "Yogina Shrestha",
+    role: "Skater Instructor",
+    image: "https://images.unsplash.com/photo-1554151228-14d9def656e4?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+    qualifications: "National Player Roll Ball, Indo-Nepal Skate Race Gold Medalist (2015)",
+    subject: "Skating",
+    email: "y.shrestha@school.edu",
+    phone: "+977 (123) 678-9012"
+  },
+  {
+    name: "Bishnu Shrestha",
+    role: "Arts & Crafts Instructor (Visual and Sculpting)",
+    image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+    qualifications: "Lecturer of Arts (Tribhuvan University)",
+    subject: "Arts & Crafts",
+    email: "b.shrestha@school.edu",
+    phone: "+977 (123) 789-0123"
+  },
+  {
+    name: "Raj Shrestha",
+    role: "Dance Instructor",
+    image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+    qualifications: "Director, Let's Dance",
+    subject: "Dance",
+    email: "r.shrestha@school.edu",
+    phone: "+977 (123) 890-1234"
+  },
+  {
+    name: "Subash Chandra Joshi",
+    role: "Senior Music Instructor (Eastern Music)",
+    image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+    qualifications: "Music Composer/Singer, Image Fm Music Award Winner",
+    subject: "Eastern Music",
+    email: "s.joshi@school.edu",
+    phone: "+977 (123) 901-2345"
+  },
+  {
+    name: "Anil Lama",
+    role: "Music Instructor (Western Music)",
+    image: "https://images.unsplash.com/photo-1554151228-14d9def656e4?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+    qualifications: "Music Composer/Singer",
+    subject: "Western Music",
+    email: "a.lama@school.edu",
+    phone: "+977 (123) 012-3456"
+  }
+];
 
 const departments = [
   { name: "Science Department", description: "Innovative STEM programs and research opportunities" },
@@ -72,6 +138,8 @@ const departments = [
 ];
 
 export default function OurTeam() {
+  const [activeTab, setActiveTab] = useState('academic');
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -93,15 +161,37 @@ export default function OurTeam() {
           </p>
         </motion.div>
 
+        {/* Tabs */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="flex justify-center mb-12">
+          <div className="inline-flex bg-gray-100 p-1 rounded-lg">
+            <button
+              onClick={() => setActiveTab('academic')}
+              className={`px-6 py-2 rounded-md font-medium text-sm transition-colors ${activeTab === 'academic' ? 'bg-white text-[#D41D33] shadow-sm' : 'text-gray-600 hover:text-gray-800'}`}
+            >
+              Academic Team
+            </button>
+            <button
+              onClick={() => setActiveTab('eca')}
+              className={`px-6 py-2 rounded-md font-medium text-sm transition-colors ${activeTab === 'eca' ? 'bg-white text-[#D41D33] shadow-sm' : 'text-gray-600 hover:text-gray-800'}`}
+            >
+              ECA Team
+            </button>
+          </div>
+        </motion.div>
+
         {/* Team Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
-          {teamMembers.map((member, index) => (
+          {(activeTab === 'academic' ? academicTeam : ecaTeam).map((member, index) => (
             <motion.div
               key={member.name}
               className="group relative bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300"
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
+              transition={{ duration: 0.2, delay: index * 0.1 }}
               whileHover={{ y: -5 }}
             >
               <div className="relative h-72 overflow-hidden">
@@ -129,13 +219,7 @@ export default function OurTeam() {
                       <p className="text-gray-700">{member.qualifications}</p>
                     </div>
                   </div>
-                  <div className="flex items-start gap-3">
-                    <BookOpen className="h-5 w-5 mt-0.5 text-[#D41D33] flex-shrink-0" />
-                    <div>
-                      <p className="text-sm font-medium text-gray-500">Subject Core</p>
-                      <p className="text-gray-700">{member.subject}</p>
-                    </div>
-                  </div>
+
                 </div>
 
                 <div className="flex gap-3">
@@ -158,45 +242,6 @@ export default function OurTeam() {
             </motion.div>
           ))}
         </div>
-
-        {/* Departments Section */}
-        <motion.div
-          className="bg-white rounded-2xl p-8 shadow-lg mb-20"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.4 }}
-        >
-          <div className="text-center mb-10">
-            <h2 className="text-3xl font-bold text-gray-900 mb-3">Our Academic Departments</h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">
-              Specialized programs designed to foster excellence in every discipline
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {departments.map((department, index) => (
-              <motion.div
-                key={department.name}
-                className="group p-6 bg-gray-50 rounded-xl border border-gray-200 hover:border-[#D41D33] transition-all duration-300"
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                whileHover={{ y: -5 }}
-              >
-                <h3 className="text-xl font-bold text-gray-800 mb-2 group-hover:text-[#D41D33] transition-colors">
-                  {department.name}
-                </h3>
-                <p className="text-gray-600 mb-4">{department.description}</p>
-                <Link
-                  href="#"
-                  className="inline-flex items-center text-[#D41D33] font-medium hover:text-[#A3162A] transition-colors"
-                >
-                  Learn more <ChevronRight className="h-4 w-4 ml-1 group-hover:translate-x-1 transition-transform" />
-                </Link>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
 
 
       </div>

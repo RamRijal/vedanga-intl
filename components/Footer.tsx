@@ -1,22 +1,49 @@
-import { School } from 'lucide-react'
-import Link from 'next/link'
-import React from 'react'
+import { School, Facebook, Instagram, Twitter, Linkedin } from 'lucide-react';
+import Image from 'next/image';
+import Link from 'next/link';
+import React from 'react';
 
 const Footer = () => {
+    const socialLinks = [
+        { icon: Facebook, url: 'https://www.facebook.com/vedangaInternationalschool' },
+        { icon: Instagram, url: 'https://www.instagram.com/vedangainternational' },
+        { icon: Twitter, url: 'https://twitter.com/vedanga' },
+        { icon: Linkedin, url: 'https://www.linkedin.com/company/vedanga-international-school' },
+    ];
+
     return (
         <footer className="bg-gray-900 text-white py-12">
             <div className="max-w-7xl mx-auto px-4">
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
                     <div className="space-y-4">
                         <div className="flex items-center space-x-2">
-                            <School className="h-8 w-8" />
-                            <span className="font-bold text-xl">Vedanga</span>
+                            <div className="flex flex-col items-center">
+                                <Image
+                                    priority
+                                    src="/images/logo.png"
+                                    alt="Vedanga Logo"
+                                    width={40}
+                                    height={40}
+                                    className="h-8 w-fit lg:h-12 lg:w-fit object-cover"
+                                />
+                            </div>
+                            <div className="flex flex-col">
+                                <span className="font-bold text-xl text-[#D41326] -mb-1">Vedanga</span>
+                                <span className="font-bold text-base text-[#D41326] -mb-2">International School</span>
+                            </div>
                         </div>
                         <p className="text-gray-400">Nurturing Minds, Shaping Futures</p>
                         <div className="space-y-2">
                             <p className="text-gray-400">Rabi Bhawan, Kathmandu</p>
                             <p className="text-gray-400">Phone: 015372578</p>
-                            <p className="text-gray-400">Email: info@vedanga.edu.np</p>
+                            <p className="text-gray-400">Email: vedanga79@gmail.com</p>
+                        </div>
+                        <div className="flex space-x-4 mt-4">
+                            {socialLinks.map((social, index) => (
+                                <Link key={index} href={social.url} target="_blank" rel="noopener noreferrer">
+                                    <social.icon className="h-6 w-6 text-gray-400 hover:text-white transition-colors" />
+                                </Link>
+                            ))}
                         </div>
                     </div>
 
@@ -56,7 +83,7 @@ const Footer = () => {
                 </div>
             </div>
         </footer>
-    )
-}
+    );
+};
 
-export default Footer
+export default Footer;

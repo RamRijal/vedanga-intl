@@ -1,36 +1,31 @@
-"use client";
+import React, { lazy, Suspense } from 'react';
 
-import GalleryDisplay from "@/components/GalleryDisplay";
-import Hero from "@/components/Hero";
-import Info from "@/components/Info";
-import LatestEvents from "@/components/LatestEvents";
-import LatestNews from "@/components/LatestNews";
-import MapSection from "@/components/MapSection";
-import Newsletter from "@/components/Newsletter";
-import Principal from "@/components/Principal";
-import { galleryImages, latestEvents, latestNews } from "@/data/dummy";
-import { Calendar, ChevronRight, MapPin, Phone, School } from "lucide-react";
-import Image from "next/image";
-import Link from "next/link";
+const GalleryDisplay = lazy(() => import('@/components/GalleryDisplay'));
+const Hero = lazy(() => import('@/components/Hero'));
+const Info = lazy(() => import('@/components/Info'));
+const LatestEvents = lazy(() => import('@/components/LatestEvents'));
+const LatestNews = lazy(() => import('@/components/LatestNews'));
+const MapSection = lazy(() => import('@/components/MapSection'));
+const Newsletter = lazy(() => import('@/components/Newsletter'));
+const Principal = lazy(() => import('@/components/Principal'));
+const Team = lazy(() => import('@/components/Team'));
+const VideoSection = lazy(() => import('@/components/VideoSection'));
 
 export default function Home() {
-
-
   return (
     <main>
-      <Hero />
-      {/* Quick Info */}
-      <Info />
-      <Principal />
-      {/* Latest Events */}
-      <LatestEvents/>
-      {/* Latest News */}
-     <LatestNews/>
-     <Newsletter/>
-      {/* Gallery Preview */}
-     <GalleryDisplay/>
-      {/* Map Section */}
-     <MapSection/>
+      <Suspense fallback={<div className='flex justify-center items-center h-screen'>Loading...</div>}>
+        <Hero />
+        <Info />
+        <Team />
+        <Principal />
+        <GalleryDisplay />
+        <LatestEvents />
+        <LatestNews />
+        <Newsletter />
+        <VideoSection />
+        <MapSection />
+      </Suspense>
     </main>
   );
 }

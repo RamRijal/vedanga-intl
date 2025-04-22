@@ -1,13 +1,14 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Mail, Phone, MapPin, Clock, Send, PhoneCall } from "lucide-react";
+import { Mail, Phone, MapPin, Clock, Send, PhoneCall, Facebook, Instagram, Twitter, Music } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { toast } from "sonner";
+import Link from "next/link";
+import dynamic from "next/dynamic";
 
-// Define validation schema with Zod
 const contactFormSchema = z.object({
   firstName: z.string().min(1, { message: "First name is required" }),
   lastName: z.string().min(1, { message: "Last name is required" }),
@@ -17,6 +18,8 @@ const contactFormSchema = z.object({
 });
 
 type ContactFormValues = z.infer<typeof contactFormSchema>;
+
+const MapSection = dynamic(() => import('@/components/MapSection'), { ssr: false });
 
 export default function Contact() {
   const {
@@ -30,46 +33,46 @@ export default function Contact() {
 
   const onSubmit = async (data: ContactFormValues) => {
     try {
-      // Show loading toast
       const toastId = toast.loading("Sending your message...");
-
-      // Simulate API call
       await new Promise((resolve) => setTimeout(resolve, 2000));
-
-      // Success toast
       toast.success("Message sent successfully!", {
         id: toastId,
         description: "We'll get back to you soon",
       });
-
       reset();
     } catch (error) {
-      // Error toast
       toast.error("Failed to send message", {
         description: "Please try again later",
       });
     }
   };
 
+  const socialLinks = [
+    { icon: Facebook, name: "Facebook", url: "https://www.facebook.com/vedangaInternationalschool" },
+    { icon: Instagram, name: "Instagram", url: "https://www.instagram.com/vedangainternational" },
+    { icon: Twitter, name: "Twitter", url: "https://twitter.com/vedanga" },
+    { icon: Music, name: "TikTok", url: "https://www.tiktok.com/@vedanga.internati" },
+  ];
+
   return (
-    <div className="min-h-screen bg-gray-50 py-8 md:py-16">
+    <div className="min-h-screen bg-gray-50 py-8 md:py-12 lg:py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
-          className="text-center mb-12 md:mb-16"
+          className="text-center mb-8 md:mb-12 lg:mb-16"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <h1 className="text-3xl sm:text-4xl font-bold text-[#D41D33] mb-4">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#D41D33] mb-3 lg:mb-4">
             Contact Us
           </h1>
-          <p className="text-gray-600 max-w-2xl mx-auto text-sm sm:text-base">
+          <p className="text-gray-600 max-w-2xl mx-auto text-base lg:text-lg">
             Have questions? We&apos;d love to hear from you. Send us a message
             and we&apos;ll respond as soon as possible.
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-8 md:gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 lg:gap-12">
           {/* Left side - Contact Info */}
           <motion.div
             initial={{ opacity: 0, x: 20 }}
@@ -77,84 +80,88 @@ export default function Contact() {
             transition={{ duration: 0.5 }}
             className="space-y-6 md:space-y-8"
           >
-            <div className="bg-white rounded-xl shadow-lg p-6 md:p-8">
-              <h2 className="text-xl md:text-2xl font-semibold text-gray-800 mb-4 md:mb-6">
+            <div className="bg-white rounded-xl shadow-md p-6 md:p-8">
+              <h2 className="text-xl lg:text-2xl font-semibold text-gray-800 mb-4 md:mb-6">
                 Contact Information
               </h2>
-              <div className="space-y-4 md:space-y-6">
-                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4">
-                  <div className="flex space-x-4">
-                    <div className="p-3 bg-[#D41D33] bg-opacity-10 rounded-lg text-[#D41D33]">
-                      <Phone className="h-5 w-5 md:h-6 md:w-6" />
+              <div className="space-y-5 md:space-y-6">
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <div className="flex-1 flex items-start gap-4">
+                    <div className="p-3 bg-[#D41D33]/10 rounded-lg text-[#D41D33]">
+                      <Phone className="h-5 w-5" />
                     </div>
                     <div>
-                      <h3 className="font-semibold text-gray-800 text-sm md:text-base">
-                        Phone
-                      </h3>
-                      <p className="text-gray-600 text-sm md:text-base">
-                        +977 015372578
+                      <h3 className="font-medium text-gray-800">Phone</h3>
+                      <p className="text-gray-600 mt-1">+977 015372578</p>
+                    </div>
+                  </div>
+                  <Link
+                    href="tel:+977984-1777518"
+                    className="flex items-center justify-center gap-2 px-4 py-2 bg-[#D41D33] hover:bg-[#b31828] text-white rounded-lg transition-colors"
+                  >
+                    <PhoneCall className="h-4 w-4" />
+                    <span className="text-sm">Call Now</span>
+                  </Link>
+                </div>
+
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <div className="flex-1 flex items-start gap-4">
+                    <div className="p-3 bg-[#D41D33]/10 rounded-lg text-[#D41D33]">
+                      <Mail className="h-5 w-5" />
+                    </div>
+                    <div>
+                      <h3 className="font-medium text-gray-800">Email</h3>
+                      <p className="text-gray-600 mt-1">vedanga79@gmail.com
                       </p>
                     </div>
                   </div>
-                  <a
-                    href="tel:+977015372578"
-                    className="flex items-center cursor-pointer p-2 rounded-lg bg-[#D41D33] w-full sm:w-auto justify-center"
+                  <Link
+                    href="mailto:vedanga79@gmail.com"
+                    className="flex items-center justify-center gap-2 px-4 py-2 bg-[#D41D33] hover:bg-[#b31828] text-white rounded-lg transition-colors"
                   >
-                    <PhoneCall className="h-4 w-4 md:h-5 md:w-5 mr-2 text-white" />
-                    <p className="text-gray-100 text-xs md:text-sm">Call Now</p>
-                  </a>
+                    <Mail className="h-4 w-4" />
+                    <span className="text-sm">Email Now</span>
+                  </Link>
                 </div>
-                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4">
-                  <div className="flex space-x-4">
-                    <div className="p-3 bg-[#D41D33] bg-opacity-10 rounded-lg text-[#D41D33]">
-                      <Mail className="h-5 w-5 md:h-6 md:w-6" />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-gray-800 text-sm md:text-base">
-                        Email
-                      </h3>
-                      <p className="text-gray-600 text-sm md:text-base">
-                        info@vedanga.edu.np
-                      </p>
-                    </div>
-                  </div>
-                  <a
-                    href="mailto:info@vedanga.edu.np"
-                    className="flex items-center cursor-pointer p-2 rounded-lg bg-[#D41D33] w-full sm:w-auto justify-center"
-                  >
-                    <Mail className="h-4 w-4 md:h-5 md:w-5 mr-2 text-white" />
-                    <p className="text-gray-100 text-xs md:text-sm">Mail Now</p>
-                  </a>
-                </div>
-                <div className="flex items-start space-x-4">
-                  <div className="p-3 bg-[#D41D33] bg-opacity-10 rounded-lg text-[#D41D33]">
-                    <Clock className="h-5 w-5 md:h-6 md:w-6" />
+
+                <div className="flex items-start gap-4">
+                  <div className="p-3 bg-[#D41D33]/10 rounded-lg text-[#D41D33]">
+                    <Clock className="h-5 w-5" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-gray-800 text-sm md:text-base">
-                      Office Hours
-                    </h3>
-                    <p className="text-gray-600 text-sm md:text-base">
-                      Monday - Friday: 8:00 AM - 4:00 PM
-                    </p>
-                    <p className="text-gray-600 text-sm md:text-base">
-                      Saturday: 8:00 AM - 12:00 PM
-                    </p>
+                    <h3 className="font-medium text-gray-800">Office Hours</h3>
+                    <p className="text-gray-600 mt-1">Monday - Friday: 8:00 AM - 4:00 PM</p>
+                    <p className="text-gray-600">Saturday: 8:00 AM - 12:00 PM</p>
                   </div>
                 </div>
               </div>
             </div>
 
-            <div className="bg-white rounded-xl shadow-lg overflow-hidden h-64 md:h-80 lg:h-96">
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3532.2714812211584!2d85.31089731506!3d27.702739982790633!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb19b19295555f%3A0xabfe5f4b310f37a9!2sRabi%20Bhawan%2C%20Kathmandu%2044600!5e0!3m2!1sen!2snp!4v1647856732345!5m2!1sen!2snp"
-                width="100%"
-                height="100%"
-                style={{ border: 0 }}
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-              ></iframe>
+            <div className="bg-white rounded-xl shadow-md p-6 md:p-8 overflow-hidden">
+              <h2 className="text-xl lg:text-2xl font-semibold text-gray-800 mb-4 md:mb-6">
+                Our Socials
+              </h2>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4">
+                {socialLinks.map((social, index) => (
+                  <Link
+                    key={index}
+                    href={social.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-3 p-3 hover:bg-gray-50 rounded-lg transition-colors overflow-hidden"
+                  >
+                    <div className="flex-shrink-0 p-2 bg-[#D41D33]/10 rounded-lg text-[#D41D33]">
+                      <social.icon className="h-5 w-5" />
+                    </div>
+                    <div className="min-w-0">
+                      <h3 className="font-medium text-gray-800 truncate">{social.name}</h3>
+                      <p className="text-gray-600 text-sm mt-1 truncate">
+                        {social.url.replace('https://', '')}
+                      </p>
+                    </div>
+                  </Link>
+                ))}
+              </div>
             </div>
           </motion.div>
 
@@ -164,96 +171,102 @@ export default function Contact() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <div className="bg-white rounded-xl shadow-lg p-6 md:p-8">
-              <h2 className="text-xl md:text-2xl font-semibold text-gray-800 mb-4 md:mb-6">
+            <div className="bg-white rounded-xl shadow-md p-6 md:p-8 h-full">
+              <h2 className="text-xl lg:text-2xl font-semibold text-gray-800 mb-4 md:mb-6">
                 Get in Touch
               </h2>
-              <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 md:space-y-6">
+              <form onSubmit={handleSubmit(onSubmit)} className="space-y-5 md:space-y-6">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1 md:mb-2">
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
                       First Name <span className="text-red-600">*</span>
                     </label>
                     <input
                       {...register("firstName")}
                       type="text"
-                      className="w-full px-3 py-2 text-sm md:text-base border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#D41D33] focus:border-transparent"
+                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#D41D33] focus:border-transparent"
                     />
                     {errors.firstName && (
-                      <p className="mt-1 text-xs text-red-600">
+                      <p className="mt-1 text-sm text-red-600">
                         {errors.firstName.message}
                       </p>
                     )}
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1 md:mb-2">
-                      Last Name<span className="text-red-600">*</span>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Last Name <span className="text-red-600">*</span>
                     </label>
                     <input
                       {...register("lastName")}
                       type="text"
-                      className="w-full px-3 py-2 text-sm md:text-base border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#D41D33] focus:border-transparent"
+                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#D41D33] focus:border-transparent"
                     />
                     {errors.lastName && (
-                      <p className="mt-1 text-xs text-red-600">
+                      <p className="mt-1 text-sm text-red-600">
                         {errors.lastName.message}
                       </p>
                     )}
                   </div>
                 </div>
+
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1 md:mb-2">
-                    Email<span className="text-red-600">*</span>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Email <span className="text-red-600">*</span>
                   </label>
                   <input
                     {...register("email")}
                     type="email"
-                    className="w-full px-3 py-2 text-sm md:text-base border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#D41D33] focus:border-transparent"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#D41D33] focus:border-transparent"
                   />
                   {errors.email && (
-                    <p className="mt-1 text-xs text-red-600">
+                    <p className="mt-1 text-sm text-red-600">
                       {errors.email.message}
                     </p>
                   )}
                 </div>
+
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1 md:mb-2">
-                    Phone<span className="text-red-600">*</span>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Phone <span className="text-red-600">*</span>
                   </label>
                   <input
                     {...register("phone")}
                     type="tel"
-                    className="w-full px-3 py-2 text-sm md:text-base border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#D41D33] focus:border-transparent"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#D41D33] focus:border-transparent"
                   />
                   {errors.phone && (
-                    <p className="mt-1 text-xs text-red-600">
+                    <p className="mt-1 text-sm text-red-600">
                       {errors.phone.message}
                     </p>
                   )}
                 </div>
+
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1 md:mb-2">
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
                     Message
                   </label>
                   <textarea
                     {...register("message")}
                     rows={4}
-                    className="w-full px-3 py-2 text-sm md:text-base border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#D41D33] focus:border-transparent"
-                  ></textarea>
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#D41D33] focus:border-transparent"
+                  />
                 </div>
+
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full flex items-center justify-center space-x-2 px-4 py-2 md:px-6 md:py-3 bg-[#D41D33] text-white rounded-lg hover:bg-opacity-90 transition-colors disabled:opacity-70"
+                  className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-[#D41D33] hover:bg-[#b31828] text-white rounded-lg transition-colors disabled:opacity-70"
                 >
-                  <Send className="h-4 w-4" />
-                  <span className="text-sm md:text-base">
-                    {isSubmitting ? "Sending..." : "Send Message"}
-                  </span>
+                  <Send className="h-5 w-5" />
+                  <span>{isSubmitting ? "Sending..." : "Send Message"}</span>
                 </button>
               </form>
             </div>
           </motion.div>
+        </div>
+
+        <div className="mt-8 md:mt-12 lg:mt-16 bg-white rounded-xl shadow-md overflow-hidden h-64 sm:h-80 lg:h-96">
+          <MapSection />
         </div>
       </div>
     </div>

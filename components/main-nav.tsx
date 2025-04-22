@@ -25,7 +25,8 @@ import {
   BriefcaseBusiness,
   PhoneCall,
   Menu,
-  X
+  X,
+  VideoIcon
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
@@ -41,6 +42,12 @@ const aboutItems = [
     title: "Our Team",
     href: "/about/our-team",
     description: "Meet our dedicated faculty and staff",
+    icon: <Users className="h-5 w-5 text-[#D41D33]" />
+  },
+  {
+    title: "Why Vedanga",
+    href: "/about/why-us",
+    description: "Features that makes Vedanga standout",
     icon: <Users className="h-5 w-5 text-[#D41D33]" />
   },
   {
@@ -91,6 +98,12 @@ const campusLifeItems = [
     description: "Photos of school life and events",
     icon: <ImageIcon className="h-5 w-5 text-[#D41D33]" />
   },
+  {
+    title: "Videos",
+    href: "/campus-life/videos",
+    description: "Videos of school life and events",
+    icon: <VideoIcon className="h-5 w-5 text-[#D41D33]" />
+  },
 ];
 
 const newsItems = [
@@ -122,6 +135,7 @@ export function MainNav() {
       <Link href="/" className="flex items-center space-x-2">
         <div className="flex flex-col items-center">
           <Image
+            priority
             src="/images/logo.png"
             alt="Vedanga Logo"
             width={40}
