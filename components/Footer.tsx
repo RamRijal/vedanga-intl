@@ -35,8 +35,11 @@ const Footer = () => {
                         <p className="text-gray-400">Nurturing Minds, Shaping Futures</p>
                         <div className="space-y-2">
                             <p className="text-gray-400">Rabi Bhawan, Kathmandu</p>
-                            <p className="text-gray-400">Phone: 015372578</p>
-                            <p className="text-gray-400">Email: vedanga79@gmail.com</p>
+
+                            <p className="text-gray-400"> <Link href="tel:01-5372578 ">Phone: 01-5372578 </Link></p>
+
+
+                            <p className="text-gray-400"> <Link href="mailto:vedanga79@gmail.com">Email: vedanga79@gmail.com </Link></p>
                         </div>
                         <div className="flex space-x-4 mt-4">
                             {socialLinks.map((social, index) => (
@@ -82,7 +85,7 @@ const Footer = () => {
                     <p>© {new Date().getFullYear()} Vedanga International School. All rights reserved.</p>
                 </div>
             </div>
-        </footer>
+        </footer >
     );
 };
 

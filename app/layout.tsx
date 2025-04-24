@@ -7,6 +7,7 @@ import Link from 'next/link';
 import NoticeOverlay from './components/NoticeOverlay';
 import { Toaster } from 'sonner';
 import Footer from '@/components/Footer';
+import BackToTopButton from '@/components/BackToTopButton';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -36,6 +37,7 @@ export default function RootLayout({
           }}
           richColors />
         <Footer />
+        <BackToTopButton/>
       </body>
     </html>
   );

@@ -8,20 +8,20 @@ import { useState } from "react";
 
 const academicTeam = [
   {
-    name: "Dr. Sarah Johnson",
+    name: "Mr. Bhawesh Chhatkuli",
     role: "Principal",
-    image: "https://images.unsplash.com/photo-1573496799652-408c2ac9fe98?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
-    qualifications: "Ph.D. in Education Leadership",
+    image: "/images/ppp.png",
+    qualifications: "Masters in Humanities (TU)",
     subject: "Science and Mathematics",
     email: "s.johnson@school.edu",
     phone: "+1 (555) 123-4567"
   },
   {
-    name: "Mr. John Smith",
-    role: "Vice Principal",
-    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+    name: "Sharada Adhikari",
+    role: "Academic Director",
+    image: "/images/Team8.png",
     qualifications: "M.Ed. in Educational Administration",
-    subject: "Optional Mathematics",
+    subject: "Steam Educator",
     email: "j.smith@school.edu",
     phone: "+1 (555) 234-5678"
   },
@@ -66,7 +66,7 @@ const ecaTeam = [
   {
     name: "Sudip Shrestha",
     role: "ECA Coordinator/Futsal Coach (ANFA 1st Batch)",
-    image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+    image: "/images/Team5.jpg",
     qualifications: "Former National Player, Former APF Coach 'A' Division, AFC 'C' Licence Coach",
     subject: "Physical Education",
     email: "s.shrestha@school.edu",
@@ -75,7 +75,7 @@ const ecaTeam = [
   {
     name: "Dambar Bahadur Ale Magar",
     role: "Karate Instructor",
-    image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+    image: "/images/Team2.jpg",
     qualifications: "Former Karate National Player, National Referee, Nepal",
     subject: "Karate",
     email: "d.magar@school.edu",
@@ -84,7 +84,7 @@ const ecaTeam = [
   {
     name: "Yogina Shrestha",
     role: "Skater Instructor",
-    image: "https://images.unsplash.com/photo-1554151228-14d9def656e4?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+    image: "/images/Team1.jpg",
     qualifications: "National Player Roll Ball, Indo-Nepal Skate Race Gold Medalist (2015)",
     subject: "Skating",
     email: "y.shrestha@school.edu",
@@ -93,7 +93,7 @@ const ecaTeam = [
   {
     name: "Bishnu Shrestha",
     role: "Arts & Crafts Instructor (Visual and Sculpting)",
-    image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+    image: "/images/Team7.jpg",
     qualifications: "Lecturer of Arts (Tribhuvan University)",
     subject: "Arts & Crafts",
     email: "b.shrestha@school.edu",
@@ -102,7 +102,7 @@ const ecaTeam = [
   {
     name: "Raj Shrestha",
     role: "Dance Instructor",
-    image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+    image: "/images/Team6.jpg",
     qualifications: "Director, Let's Dance",
     subject: "Dance",
     email: "r.shrestha@school.edu",
@@ -111,21 +111,21 @@ const ecaTeam = [
   {
     name: "Subash Chandra Joshi",
     role: "Senior Music Instructor (Eastern Music)",
-    image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+    image: "/images/Team3.jpg",
     qualifications: "Music Composer/Singer, Image Fm Music Award Winner",
     subject: "Eastern Music",
     email: "s.joshi@school.edu",
     phone: "+977 (123) 901-2345"
   },
-  {
-    name: "Anil Lama",
-    role: "Music Instructor (Western Music)",
-    image: "https://images.unsplash.com/photo-1554151228-14d9def656e4?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
-    qualifications: "Music Composer/Singer",
-    subject: "Western Music",
-    email: "a.lama@school.edu",
-    phone: "+977 (123) 012-3456"
-  }
+  // {
+  //   name: "Anil Lama",
+  //   role: "Music Instructor (Western Music)",
+  //   image: "https://images.unsplash.com/photo-1554151228-14d9def656e4?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+  //   qualifications: "Music Composer/Singer",
+  //   subject: "Western Music",
+  //   email: "a.lama@school.edu",
+  //   phone: "+977 (123) 012-3456"
+  // }
 ];
 
 const departments = [

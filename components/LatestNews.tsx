@@ -29,6 +29,7 @@ const LatestNews = () => {
                         >
                             <div className="relative h-48 overflow-hidden">
                                 <Image
+                                    loading='lazy'
                                     src={newsItem.image}
                                     alt={newsItem.title}
                                     fill
