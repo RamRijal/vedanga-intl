@@ -24,7 +24,7 @@ const Principal = () => {
                                 fill
                                 className="z-40 object-cover"
                                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                                priority
+                                loading='lazy'
                             />
                             <div className="z-50 absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
                         </div>

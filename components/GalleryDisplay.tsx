@@ -288,8 +288,6 @@ const GalleryDisplay = () => {
 
                                     {/* Image info */}
                                     <div className="mt-4 text-white text-center">
-                                        <h3 className="text-xl font-semibold">{GalleryImages[currentIndex].title}</h3>
-                                        <p className="text-gray-300">{GalleryImages[currentIndex].description}</p>
                                         <p className="text-sm text-gray-400 mt-2">
                                             {currentIndex + 1} of {GalleryImages.length}
                                         </p>
