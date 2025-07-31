@@ -19,8 +19,8 @@ export default function Home() {
         <Info />
         <Team />
         <Principal />
-        <LatestEvents />
         <GalleryDisplay />
+        <LatestEvents />
         <LatestNews />
         <Newsletter />
         <VideoSection />

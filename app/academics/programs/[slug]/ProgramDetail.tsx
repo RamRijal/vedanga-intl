@@ -45,36 +45,6 @@ export default function ProgramContent({ program }: ProgramContentProps) {
 
             {/* Main Content */}
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-                {/* Features Section */}
-                <motion.section
-                    className="mb-20"
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    viewport={{ once: true, margin: "-100px" }}
-                >
-                    <h2 className="text-3xl font-bold text-gray-900 mb-8 flex items-center gap-3">
-                        <BookOpen className="text-[#D41D33]" />
-                        <span>Program Highlights</span>
-                    </h2>
-                    <div className="grid md:grid-cols-3 gap-8">
-                        {program.features.map((feature, index) => (
-                            <motion.div
-                                key={index}
-                                className="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow"
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 0.5, delay: index * 0.1 }}
-                            >
-                                <div className="w-12 h-12 flex items-center justify-center bg-[#D41D33]/10 text-[#D41D33] rounded-full mb-4">
-                                    {feature.icon}
-                                </div>
-                                <h3 className="text-xl font-bold text-gray-800 mb-2">{feature.title}</h3>
-                                <p className="text-gray-600">{feature.description}</p>
-                            </motion.div>
-                        ))}
-                    </div>
-                </motion.section>
 
                 {/* Curriculum Section */}
                 <motion.section
@@ -83,8 +53,8 @@ export default function ProgramContent({ program }: ProgramContentProps) {
                     whileInView={{ opacity: 1 }}
                     viewport={{ once: true, margin: "-100px" }}
                 >
-                    <h2 className="text-3xl font-bold text-gray-900 mb-8 flex items-center gap-3">
-                        <BookOpen className="text-[#D41D33]" />
+                    <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-8 flex items-center gap-3">
+                        <BookOpen size={20} className="text-[#D41D33]" />
                         <span>Curriculum Overview</span>
                     </h2>
 
@@ -162,8 +132,8 @@ export default function ProgramContent({ program }: ProgramContentProps) {
                     whileInView={{ opacity: 1 }}
                     viewport={{ once: true, margin: "-100px" }}
                 >
-                    <h2 className="text-3xl font-bold text-gray-900 mb-8 flex items-center gap-3">
-                        <Clock className="text-[#D41D33]" />
+                    <h2 className="text-2xl md:text-3xl  font-bold text-gray-900 mb-8 flex items-center gap-3">
+                        <Clock size={20} className="text-[#D41D33]" />
                         <span>Daily Schedule</span>
                     </h2>
                     <div className="bg-white rounded-xl shadow-md overflow-hidden">
@@ -183,6 +153,36 @@ export default function ProgramContent({ program }: ProgramContentProps) {
                         </div>
                     </div>
                 </motion.section>
+                {/* Features Section */}
+                <motion.section
+                    className="mb-20"
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    viewport={{ once: true, margin: "-100px" }}
+                >
+                    <h2 className="text-2xl md:text-3xl  font-bold text-gray-900 mb-8 flex items-center gap-3">
+                        <BookOpen size={20} className="text-[#D41D33]" />
+                        <span>Program Highlights</span>
+                    </h2>
+                    <div className="grid md:grid-cols-3 gap-8">
+                        {program.features.map((feature, index) => (
+                            <motion.div
+                                key={index}
+                                className="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow"
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.5, delay: index * 0.1 }}
+                            >
+                                <div className="w-12 h-12 flex items-center justify-center bg-[#D41D33]/10 text-[#D41D33] rounded-full mb-4">
+                                    {feature.icon}
+                                </div>
+                                <h3 className="text-xl font-bold text-gray-800 mb-2">{feature.title}</h3>
+                                <p className="text-gray-600">{feature.description}</p>
+                            </motion.div>
+                        ))}
+                    </div>
+                </motion.section>
 
                 {/* Gallery Section */}
                 <motion.section
@@ -190,8 +190,8 @@ export default function ProgramContent({ program }: ProgramContentProps) {
                     whileInView={{ opacity: 1 }}
                     viewport={{ once: true, margin: "-100px" }}
                 >
-                    <h2 className="text-3xl font-bold text-gray-900 mb-8 flex items-center gap-3">
-                        <ImageIcon className="text-[#D41D33]" />
+                    <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-8 flex items-center gap-3">
+                        <ImageIcon size={20} className="text-[#D41D33]" />
                         <span>Gallery</span>
                     </h2>
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -215,7 +215,7 @@ export default function ProgramContent({ program }: ProgramContentProps) {
                     </div>
                 </motion.section>
 
-              
+
             </div>
         </div>
     );

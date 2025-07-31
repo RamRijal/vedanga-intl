@@ -23,11 +23,16 @@ export default function Events() {
     const eventDate = new Date(dateString);
     const now = new Date();
     const diffInDays = Math.floor((now.getTime() - eventDate.getTime()) / (1000 * 60 * 60 * 24));
-
     if (diffInDays === 0) return "Today";
     if (diffInDays === 1) return "Yesterday";
-    if (diffInDays > 7) return `${diffInDays} days ago`;
-    if (diffInDays > 30) return `${Math.floor(diffInDays / 7)} week${Math.floor(diffInDays / 7) > 1 ? 's' : ''} ago`;
+    if (diffInDays === -1) return "Tomorrow";
+    // if (diffInDays > 7 && diffInDays < 30) return `${diffInDays} days ago`;
+    // if (diffInDays > 30) return `${Math.floor(diffInDays / 7)} week${Math.floor(diffInDays / 7) > 1 ? 's' : ''} ago`;
+    // if (diffInDays < 0 && eventDate > now) return `Event finished`
+    if (eventDate < now && diffInDays>7) return `Event finished ${Math.floor(diffInDays / 7)} week${Math.floor(diffInDays / 7) > 1 ? 's' : ''} ago `
+    if (eventDate < now && diffInDays<7) return `Event finished ${Math.floor(diffInDays)} day${Math.floor(diffInDays) > 1 ? 's' : ''} ago `
+    if (eventDate > now && diffInDays * (-1) > 7) return `${Math.floor(diffInDays * (-1) / 7)} week${Math.floor(diffInDays * (-1) / 7) > 1 ? 's' : ''} to go `
+    if (eventDate > now && diffInDays<7) return ` ${Math.floor(diffInDays*(-1))} day${Math.floor(diffInDays) < 1 ? 's' : ''} to go `
     return eventDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
   };
 
@@ -121,7 +126,7 @@ export default function Events() {
                   </div>
 
                   <div className="flex items-center text-[#D41D33] font-medium group-hover:text-[#b83549] transition-colors">
-                    <span>View details</span>
+                    <span className="flex items-center justify-center">View details</span>
                     <ChevronRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                   </div>
                 </div>

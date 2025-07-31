@@ -63,17 +63,18 @@ export default function Clubs() {
                 </div>
 
                 <div className="mt-auto pt-4 border-t border-gray-100">
-                  <div className="flex justify-between text-sm text-gray-500 mb-4">
+                  <div className="flex flex-col xl:flex-row md:justify-between text-sm text-gray-500 mb-4">
                     <div className="flex items-center">
                       <span className="font-medium">Advisor:</span>
                       <span className="ml-1">{club.advisor}</span>
                     </div>
                     <div className="flex items-center">
-                      <span>Meets {club.meetingDay}s</span>
+                      <span className="font-medium">Meets: </span>
+                      <span className="ml-1">{club.meetingDay}</span>
                     </div>
                   </div>
 
-                  <Link href={ `/campus-life/clubs/${club.slug}`}>
+                  <Link href={`/campus-life/clubs/${club.slug}`}>
                     <button className="w-full flex items-center justify-center px-4 py-2.5 bg-[#DB2139] text-white rounded-lg hover:bg-[#e94158] transition-colors group">
                       <span className="font-medium">View details</span>
                       <ChevronRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />

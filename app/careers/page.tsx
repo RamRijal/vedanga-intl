@@ -44,27 +44,29 @@ export default function Careers() {
   return (
     <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
-        <motion.div
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          <h1 className="text-4xl font-bold text-[#DB2139] mb-4">Join Our Team</h1>
-          <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-            Explore career opportunities at Vedanga International School
-          </p>
-        </motion.div>
+
 
         {jobOpenings.length === 0 ? (
-          <div className="text-center py-24">
-            <div className="inline-flex items-center justify-center w-16 h-16 mb-4 bg-red-100 text-red-600 rounded-full">
-              <XCircle className="h-8 w-8" />
+          <div className="text-center py-40">
+            <div className="inline-flex items-center justify-center w-20 h-20 mb-8 bg-red-100 text-red-600 rounded-full">
+              <XCircle className="h-12 w-12" />
             </div>
             <h2 className="text-2xl md:text-4xl font-bold text-gray-300 mb-4">No Job Openings Available</h2>
           </div>
         ) : (
+
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 mb-16">
+            <motion.div
+              className="text-center mb-16"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+            >
+              <h1 className="text-4xl font-bold text-[#DB2139] mb-4">Join Our Team</h1>
+              <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+                Explore career opportunities at Vedanga International School
+              </p>
+            </motion.div>
             {jobOpenings.map((job, index) => (
               <motion.div
                 key={job.id}

@@ -20,7 +20,7 @@ const teamMembers = [
         image: '/images/Team8.png'
     },
     {
-        name: 'ABC',
+        name: 'Dhurba Luitel ',
         position: 'Chairman',
         image: '',
     },

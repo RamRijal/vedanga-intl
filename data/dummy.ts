@@ -1,6 +1,16 @@
-export const heroSlides = [
+export interface HeroSlide {
+  image: string;
+  title: string;
+  subtitle: string;
+  tagline?: string;
+  ctaText?: string;
+  ctaLink?: string;
+  backgroundImage?: string;
+  id?: string | number;
+}
+export const heroSlides: HeroSlide[] = [
   {
-    image: "/images/foto1.jpg",
+    image: "/images/foto14.jpg",
     title: "Excellence in Education",
     subtitle: "Nurturing Minds, Shaping Futures",
   },

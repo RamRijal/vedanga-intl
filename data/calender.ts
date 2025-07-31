@@ -47,7 +47,7 @@ const academicCalendar = [
     workingDays: 22,
     holidays: [
       {
-        date: "1st May",
+        date: "1st ",
         event: "Labour Day",
         category: "holiday",
         color: "red",
