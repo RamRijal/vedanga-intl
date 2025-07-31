@@ -63,7 +63,7 @@ export const clubs = [
     meetingDay: "Monday",
     activities: ["Instrumental Practice", "Vocal Performance", "Competitions"],
     advisor: "Mrs. Lisa Chen",
-    color: "bg-red-100 text-red-600",
+    color: "bg-blue-100 text-blue-600",
     image: "/images/foto7.jpg",  // Add image path
   },
 ];

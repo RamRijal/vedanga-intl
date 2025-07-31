@@ -148,7 +148,7 @@ export function EventDetail({ event }: { event: Event }) {
                         </div>
 
                         {/* Action Buttons */}
-                        <div className="flex flex-col md:flex-row justify-between items-center gap-6 border-t border-gray-200 pt-8">
+                        {/* <div className="flex flex-col md:flex-row justify-between items-center gap-6 border-t border-gray-200 pt-8">
                             <button className="w-full md:w-auto px-8 py-3 bg-[#D41D33] text-white rounded-lg hover:bg-[#A3162A] transition-colors shadow-md hover:shadow-lg font-medium">
                                 Register for Event
                             </button>
@@ -197,7 +197,7 @@ export function EventDetail({ event }: { event: Event }) {
                                     <Linkedin className="h-5 w-5 text-blue-700" />
                                 </a>
                             </div>
-                        </div>
+                        </div> */}
                     </div>
                 </article>
             </div>
